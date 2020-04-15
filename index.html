@@ -6,22 +6,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS
-    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css"> -->
-
-    <!-- Charts JS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.css">
-
     <!-- Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
 
+    <!-- Leaflet Easy Button -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+
+    <!-- noUI slider -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.3/nouislider.min.css" rel="stylesheet">
+
     <!-- SCSS/CSS -->
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/media_queries.css">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 
-    <title>Hello, world!</title>
+    <title>MI Covid-19</title>
 </head>
 
 <body>
@@ -30,10 +34,10 @@
         <div class="links">
         </div>
 
-        <div class="header-title">Michigan Covid-19 Dashboard</div>
+        <div class="header-title">Michigan Covid-19 Status</div>
 
         <div class="logout">
-            <a class="nav-item" href="/user/logout">
+            <a class="nav-item" href="https://www.linkedin.com/in/joe-carl-55116351/">
                 <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fab fa-linkedin-in fa-stack-1x fa-inverse"></i>
@@ -81,37 +85,28 @@
         <div id="deathsDailyLineChart">
         </div>
     </chart>
-    <chart class="border-rounded">
-      <div id="stackedChart">
-      </div>
+    <chart class="border-rounded shadow-custom">
+        <a class="card-expanded-cases-deaths">
+            <span class="fa-stack fa-lg" id="casesdeathsBarModalBtn">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-expand fa-stack-1x fa-inverse"></i>
+  </span> </i>
+        </a>
+        <div id="stackedChart">
+        </div>
     </chart>
     <chart class="border-rounded shadow-custom" id="pieChartContainer">
-      <div class="flip-pie flipswitch-pie">
-          <input type="checkbox" checked="" id="fs-pie" class="flipswitch-pie-cb" name="flipswitch">
-          <label for="fs-pie" class="flipswitch-pie-label">
+        <div class="flip-pie flipswitch-pie">
+            <input type="checkbox" checked="" id="fs-pie" class="flipswitch-pie-cb" name="flipswitch">
+            <label for="fs-pie" class="flipswitch-pie-label">
               <div class="flipswitch-pie-inner"></div>
               <div class="flipswitch-pie-switch"></div>
           </label>
-      </div>
-      <div id="pieChart">
-      </div>
-  </chart>
-    <map class="border-rounded">
-      <div class="legend">
-        <div>
-          <ul>
-            <li class='legend-item'><span class="square cases-square9"></span> >7619</li>
-            <li class='legend-item'><span class="square cases-square8"></span>3703 - 7169</li>
-            <li class='legend-item'><span class="square cases-square7"></span>1392 - 3702</li>
-            <li class='legend-item'><span class="square cases-square6"></span>292 - 1391</li>
-            <li class='legend-item'><span class="square cases-square5"></span>111 - 291</li>
-            <li class='legend-item'><span class="square cases-square4"></span>37-110</li>
-            <li class='legend-item'><span class="square cases-square3"></span>10-36</li>
-            <li class='legend-item'><span class="square cases-square2"></span>1-9</li>
-            <li class='legend-item'><span class="square cases-square1"></span>0</li>
-          </ul>
         </div>
-    </div>
+        <div id="pieChart">
+        </div>
+    </chart>
+    <map class="border-rounded shadow-custom">
     <div class="slider">
         <div class="cases-info">
             <h3>Data Viewer</h3>
@@ -125,15 +120,14 @@
             </div>
         </div>
         <div class="slider-info">
-            <h3>Data Slider</h3>
+            <h3>Date Slider</h3>
             <span class="data-date">Date: </span></br>
         </div>
         <div id="slider-range"></div>
     </div>
         <div id="mapid"></div>
     </map>
-    <table-area class="border-rounded">
-        <!-- <div id="about" class="nano"> -->
+    <table-area class="border-rounded shadow-custom">
         <div>
             <table class="table table-striped">
                 <thead>
@@ -145,393 +139,432 @@
                 </thead>
                 <tbody>
                     <tr class="firstRow">
-                        <td class="County-cell">Detroit City</td>
-                        <td class="Cases-cell">6061</td>
-                        <td class="Reported Deaths-cell">275</td>
+                      <td class="County-cell">Detroit City</td>
+                      <td class="Cases-cell">7004</td>
+                      <td class="Reported Deaths-cell">427</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Oakland</td>
-                        <td class="Cases-cell">4247</td>
-                        <td class="Reported Deaths-cell">246</td>
+                      <td class="County-cell">Oakland</td>
+                      <td class="Cases-cell">5364</td>
+                      <td class="Reported Deaths-cell">364</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Wayne</td>
-                        <td class="Cases-cell">4032</td>
-                        <td class="Reported Deaths-cell">229</td>
+                      <td class="County-cell">Wayne</td>
+                      <td class="Cases-cell">5205</td>
+                      <td class="Reported Deaths-cell">393</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Macomb</td>
-                        <td class="Cases-cell">2783</td>
-                        <td class="Reported Deaths-cell">165</td>
+                      <td class="County-cell">Macomb</td>
+                      <td class="Cases-cell">3620</td>
+                      <td class="Reported Deaths-cell">293</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Genesee</td>
-                        <td class="Cases-cell">755</td>
-                        <td class="Reported Deaths-cell">48</td>
+                      <td class="County-cell">Genesee</td>
+                      <td class="Cases-cell">1030</td>
+                      <td class="Reported Deaths-cell">86</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Washtenaw</td>
-                        <td class="Cases-cell">637</td>
-                        <td class="Reported Deaths-cell">15</td>
+                      <td class="County-cell">Washtenaw</td>
+                      <td class="Cases-cell">772</td>
+                      <td class="Reported Deaths-cell">21</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Other*</td>
-                        <td class="Cases-cell">290</td>
-                        <td class="Reported Deaths-cell">4</td>
+                      <td class="County-cell">Kent</td>
+                      <td class="Cases-cell">325</td>
+                      <td class="Reported Deaths-cell">14</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Kent</td>
-                        <td class="Cases-cell">233</td>
-                        <td class="Reported Deaths-cell">9</td>
+                      <td class="County-cell">Saginaw</td>
+                      <td class="Cases-cell">302</td>
+                      <td class="Reported Deaths-cell">17</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Ingham</td>
-                        <td class="Cases-cell">222</td>
-                        <td class="Reported Deaths-cell">3</td>
+                      <td class="County-cell">Ingham</td>
+                      <td class="Cases-cell">263</td>
+                      <td class="Reported Deaths-cell">4</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Saginaw</td>
-                        <td class="Cases-cell">205</td>
-                        <td class="Reported Deaths-cell">7</td>
+                      <td class="County-cell">Livingston</td>
+                      <td class="Cases-cell">238</td>
+                      <td class="Reported Deaths-cell">6</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Livingston</td>
-                        <td class="Cases-cell">181</td>
-                        <td class="Reported Deaths-cell">2</td>
+                      <td class="County-cell">Monroe</td>
+                      <td class="Cases-cell">196</td>
+                      <td class="Reported Deaths-cell">8</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Monroe</td>
-                        <td class="Cases-cell">165</td>
-                        <td class="Reported Deaths-cell">1</td>
+                      <td class="County-cell">Jackson</td>
+                      <td class="Cases-cell">183</td>
+                      <td class="Reported Deaths-cell">7</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">St Clair</td>
-                        <td class="Cases-cell">162</td>
-                        <td class="Reported Deaths-cell">4</td>
+                      <td class="County-cell">Lapeer</td>
+                      <td class="Cases-cell">117</td>
+                      <td class="Reported Deaths-cell">9</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Jackson</td>
-                        <td class="Cases-cell">131</td>
-                        <td class="Reported Deaths-cell">4</td>
+                      <td class="County-cell">Berrien</td>
+                      <td class="Cases-cell">111</td>
+                      <td class="Reported Deaths-cell">5</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Out of State</td>
-                        <td class="Cases-cell">131</td>
-                        <td class="Reported Deaths-cell">1</td>
+                      <td class="County-cell">Clinton</td>
+                      <td class="Cases-cell">98</td>
+                      <td class="Reported Deaths-cell">4</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Clinton</td>
-                        <td class="Cases-cell">85</td>
-                        <td class="Reported Deaths-cell">1</td>
+                      <td class="County-cell">Kalamazoo</td>
+                      <td class="Cases-cell">94</td>
+                      <td class="Reported Deaths-cell">8</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Berrien</td>
-                        <td class="Cases-cell">80</td>
-                        <td class="Reported Deaths-cell">2</td>
+                      <td class="County-cell">Calhoun</td>
+                      <td class="Cases-cell">90</td>
+                      <td class="Reported Deaths-cell">3</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Unknown</td>
-                        <td class="Cases-cell">78</td>
-                        <td class="Reported Deaths-cell">1</td>
+                      <td class="County-cell">Muskegon</td>
+                      <td class="Cases-cell">85</td>
+                      <td class="Reported Deaths-cell">5</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Lapeer</td>
-                        <td class="Cases-cell">77</td>
-                        <td class="Reported Deaths-cell">5</td>
+                      <td class="County-cell">Hillsdale</td>
+                      <td class="Cases-cell">79</td>
+                      <td class="Reported Deaths-cell">9</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Kalamazoo</td>
-                        <td class="Cases-cell">74</td>
-                        <td class="Reported Deaths-cell">6</td>
+                      <td class="County-cell">Eaton</td>
+                      <td class="Cases-cell">76</td>
+                      <td class="Reported Deaths-cell">5</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Eaton</td>
-                        <td class="Cases-cell">69</td>
-                        <td class="Reported Deaths-cell">3</td>
+                      <td class="County-cell">Ottawa</td>
+                      <td class="Cases-cell">67</td>
+                      <td class="Reported Deaths-cell">2</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Hillsdale</td>
-                        <td class="Cases-cell">64</td>
-                        <td class="Reported Deaths-cell">6</td>
+                      <td class="County-cell">Shiawassee</td>
+                      <td class="Cases-cell">62</td>
+                      <td class="Reported Deaths-cell">1</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Ottawa</td>
-                        <td class="Cases-cell">59</td>
-                        <td class="Reported Deaths-cell">1</td>
+                      <td class="County-cell">Bay</td>
+                      <td class="Cases-cell">60</td>
+                      <td class="Reported Deaths-cell">2</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Calhoun</td>
-                        <td class="Cases-cell">57</td>
-                        <td class="Reported Deaths-cell">1</td>
+                      <td class="County-cell">Lenawee</td>
+                      <td class="Cases-cell">53</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Muskegon</td>
-                        <td class="Cases-cell">53</td>
-                        <td class="Reported Deaths-cell">4</td>
+                      <td class="County-cell">St. Clair</td>
+                      <td class="Cases-cell">53</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Bay</td>
-                        <td class="Cases-cell">42</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Tuscola</td>
+                      <td class="Cases-cell">45</td>
+                      <td class="Reported Deaths-cell">9</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Lenawee</td>
-                        <td class="Cases-cell">39</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Isabella</td>
+                      <td class="Cases-cell">42</td>
+                      <td class="Reported Deaths-cell">4</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Tuscola</td>
-                        <td class="Cases-cell">36</td>
-                        <td class="Reported Deaths-cell">3</td>
+                      <td class="County-cell">Otsego</td>
+                      <td class="Cases-cell">34</td>
+                      <td class="Reported Deaths-cell">2</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Shiawassee</td>
-                        <td class="Cases-cell">31</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Midland</td>
+                      <td class="Cases-cell">33</td>
+                      <td class="Reported Deaths-cell">1</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Otsego</td>
-                        <td class="Cases-cell">29</td>
-                        <td class="Reported Deaths-cell">2</td>
+                      <td class="County-cell">Branch</td>
+                      <td class="Cases-cell">29</td>
+                      <td class="Reported Deaths-cell">2</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Isabella</td>
-                        <td class="Cases-cell">28</td>
-                        <td class="Reported Deaths-cell">2</td>
+                      <td class="County-cell">Marquette</td>
+                      <td class="Cases-cell">26</td>
+                      <td class="Reported Deaths-cell">5</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Midland</td>
-                        <td class="Cases-cell">28</td>
-                        <td class="Reported Deaths-cell">1</td>
+                      <td class="County-cell">Allegan</td>
+                      <td class="Cases-cell">23</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Branch</td>
-                        <td class="Cases-cell">24</td>
-                        <td class="Reported Deaths-cell">1</td>
+                      <td class="County-cell">Montcalm</td>
+                      <td class="Cases-cell">23</td>
+                      <td class="Reported Deaths-cell">1</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Sanilac</td>
-                        <td class="Cases-cell">21</td>
-                        <td class="Reported Deaths-cell">2</td>
+                      <td class="County-cell">Sanilac</td>
+                      <td class="Cases-cell">23</td>
+                      <td class="Reported Deaths-cell">2</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Montcalm</td>
-                        <td class="Cases-cell">19</td>
-                        <td class="Reported Deaths-cell">1</td>
+                      <td class="County-cell">Van Buren</td>
+                      <td class="Cases-cell">22</td>
+                      <td class="Reported Deaths-cell">2</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Allegan</td>
-                        <td class="Cases-cell">18</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Emmet</td>
+                      <td class="Cases-cell">21</td>
+                      <td class="Reported Deaths-cell">2</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Marquette</td>
-                        <td class="Cases-cell">18</td>
-                        <td class="Reported Deaths-cell">2</td>
+                      <td class="County-cell">Grand Traverse</td>
+                      <td class="Cases-cell">17</td>
+                      <td class="Reported Deaths-cell">3</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">St Joseph</td>
-                        <td class="Cases-cell">18</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Ionia</td>
+                      <td class="Cases-cell">17</td>
+                      <td class="Reported Deaths-cell">2</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Van Buren</td>
-                        <td class="Cases-cell">18</td>
-                        <td class="Reported Deaths-cell">1</td>
+                      <td class="County-cell">Crawford</td>
+                      <td class="Cases-cell">15</td>
+                      <td class="Reported Deaths-cell">1</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Emmet</td>
-                        <td class="Cases-cell">16</td>
-                        <td class="Reported Deaths-cell">2</td>
+                      <td class="County-cell">Barry</td>
+                      <td class="Cases-cell">14</td>
+                      <td class="Reported Deaths-cell">1</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Grand Traverse</td>
-                        <td class="Cases-cell">15</td>
-                        <td class="Reported Deaths-cell">3</td>
+                      <td class="County-cell">Kalkaska</td>
+                      <td class="Cases-cell">14</td>
+                      <td class="Reported Deaths-cell">2</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Ionia</td>
-                        <td class="Cases-cell">13</td>
-                        <td class="Reported Deaths-cell">1</td>
+                      <td class="County-cell">Cass</td>
+                      <td class="Cases-cell">13</td>
+                      <td class="Reported Deaths-cell">1</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Cass</td>
-                        <td class="Cases-cell">10</td>
-                        <td class="Reported Deaths-cell">1</td>
+                      <td class="County-cell">Cheboygan</td>
+                      <td class="Cases-cell">12</td>
+                      <td class="Reported Deaths-cell">1</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Cheboygan</td>
-                        <td class="Cases-cell">10</td>
-                        <td class="Reported Deaths-cell">1</td>
+                      <td class="County-cell">Charlevoix</td>
+                      <td class="Cases-cell">11</td>
+                      <td class="Reported Deaths-cell">1</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Kalkaska</td>
-                        <td class="Cases-cell">10</td>
-                        <td class="Reported Deaths-cell">2</td>
+                      <td class="County-cell">Mecosta</td>
+                      <td class="Cases-cell">11</td>
+                      <td class="Reported Deaths-cell">1</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Charlevoix</td>
-                        <td class="Cases-cell">9</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Manistee</td>
+                      <td class="Cases-cell">10</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Delta</td>
-                        <td class="Cases-cell">9</td>
-                        <td class="Reported Deaths-cell">1</td>
+                      <td class="County-cell">Delta</td>
+                      <td class="Cases-cell">9</td>
+                      <td class="Reported Deaths-cell">1</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Manistee</td>
-                        <td class="Cases-cell">9</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Roscommon</td>
+                      <td class="Cases-cell">9</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Mecosta</td>
-                        <td class="Cases-cell">9</td>
-                        <td class="Reported Deaths-cell">1</td>
+                      <td class="County-cell">Antrim</td>
+                      <td class="Cases-cell">8</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Roscommon</td>
-                        <td class="Cases-cell">8</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">St. Joseph</td>
+                      <td class="Cases-cell">8</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Barry</td>
-                        <td class="Cases-cell">7</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Gratiot</td>
+                      <td class="Cases-cell">7</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Wexford</td>
-                        <td class="Cases-cell">7</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Newaygo</td>
+                      <td class="Cases-cell">7</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Antrim</td>
-                        <td class="Cases-cell">6</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Wexford</td>
+                      <td class="Cases-cell">7</td>
+                      <td class="Reported Deaths-cell">1</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Gratiot</td>
-                        <td class="Cases-cell">6</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Huron</td>
+                      <td class="Cases-cell">6</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Crawford</td>
-                        <td class="Cases-cell">5</td>
-                        <td class="Reported Deaths-cell">1</td>
+                      <td class="County-cell">Arenac</td>
+                      <td class="Cases-cell">5</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Huron</td>
-                        <td class="Cases-cell">5</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Gladwin</td>
+                      <td class="Cases-cell">5</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Arenac</td>
-                        <td class="Cases-cell">4</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Osceola</td>
+                      <td class="Cases-cell">5</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Gladwin</td>
-                        <td class="Cases-cell">4</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Clare</td>
+                      <td class="Cases-cell">4</td>
+                      <td class="Reported Deaths-cell">1</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Iosco</td>
-                        <td class="Cases-cell">4</td>
-                        <td class="Reported Deaths-cell">1</td>
+                      <td class="County-cell">Gogebic</td>
+                      <td class="Cases-cell">4</td>
+                      <td class="Reported Deaths-cell">1</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Leelanau</td>
-                        <td class="Cases-cell">4</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Iosco</td>
+                      <td class="Cases-cell">4</td>
+                      <td class="Reported Deaths-cell">1</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Mackinac</td>
-                        <td class="Cases-cell">4</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Leelanau</td>
+                      <td class="Cases-cell">4</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Dickinson</td>
-                        <td class="Cases-cell">3</td>
-                        <td class="Reported Deaths-cell">1</td>
+                      <td class="County-cell">Mackinac</td>
+                      <td class="Cases-cell">4</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Gogebic</td>
-                        <td class="Cases-cell">3</td>
-                        <td class="Reported Deaths-cell">1</td>
+                      <td class="County-cell">Ogemaw</td>
+                      <td class="Cases-cell">4</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Newaygo</td>
-                        <td class="Cases-cell">3</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Oscoda</td>
+                      <td class="Cases-cell">4</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Oceana</td>
-                        <td class="Cases-cell">3</td>
-                        <td class="Reported Deaths-cell">1</td>
+                      <td class="County-cell">Dickinson</td>
+                      <td class="Cases-cell">3</td>
+                      <td class="Reported Deaths-cell">2</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Ogemaw</td>
-                        <td class="Cases-cell">3</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Mason</td>
+                      <td class="Cases-cell">3</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Osceola</td>
-                        <td class="Cases-cell">3</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Oceana</td>
+                      <td class="Cases-cell">3</td>
+                      <td class="Reported Deaths-cell">1</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Oscoda</td>
-                        <td class="Cases-cell">3</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Schoolcraft</td>
+                      <td class="Cases-cell">3</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Clare</td>
-                        <td class="Cases-cell">2</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Houghton</td>
+                      <td class="Cases-cell">2</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Chippewa</td>
-                        <td class="Cases-cell">1</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Lake</td>
+                      <td class="Cases-cell">2</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Houghton</td>
-                        <td class="Cases-cell">1</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Presque Isle</td>
+                      <td class="Cases-cell">2</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Luce</td>
-                        <td class="Cases-cell">1</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Alpena</td>
+                      <td class="Cases-cell">1</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Mason</td>
-                        <td class="Cases-cell">1</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Chippewa</td>
+                      <td class="Cases-cell">1</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Missaukee</td>
-                        <td class="Cases-cell">1</td>
-                        <td class="Reported Deaths-cell">1</td>
+                      <td class="County-cell">Luce</td>
+                      <td class="Cases-cell">1</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr>
-                        <td class="County-cell">Presque Isle</td>
-                        <td class="Cases-cell">1</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Menominee</td>
+                      <td class="Cases-cell">1</td>
+                      <td class="Reported Deaths-cell">0</td>
+                    </tr>
+                    <tr>
+                      <td class="County-cell">Missaukee</td>
+                      <td class="Cases-cell">1</td>
+                      <td class="Reported Deaths-cell">1</td>
+                    </tr>
+                    <tr>
+                      <td class="County-cell">Montmorency</td>
+                      <td class="Cases-cell">1</td>
+                      <td class="Reported Deaths-cell">0</td>
+                    </tr>
+                    <tr>
+                      <td class="County-cell">Alcona</td>
+                      <td class="Cases-cell">0</td>
+                      <td class="Reported Deaths-cell">0</td>
+                    </tr>
+                    <tr>
+                      <td class="County-cell">Alger</td>
+                      <td class="Cases-cell">0</td>
+                      <td class="Reported Deaths-cell">0</td>
+                    </tr>
+                    <tr>
+                      <td class="County-cell">Baraga</td>
+                      <td class="Cases-cell">0</td>
+                      <td class="Reported Deaths-cell">0</td>
+                    </tr>
+                    <tr>
+                      <td class="County-cell">Benzie</td>
+                      <td class="Cases-cell">0</td>
+                      <td class="Reported Deaths-cell">0</td>
+                    </tr>
+                    <tr>
+                      <td class="County-cell">Iron</td>
+                      <td class="Cases-cell">0</td>
+                      <td class="Reported Deaths-cell">0</td>
+                    </tr>
+                    <tr>
+                      <td class="County-cell">Keweenaw</td>
+                      <td class="Cases-cell">0</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
                     <tr class="lastRow">
-                        <td class="County-cell">Schoolcraft</td>
-                        <td class="Cases-cell">1</td>
-                        <td class="Reported Deaths-cell"></td>
+                      <td class="County-cell">Ontonagon</td>
+                      <td class="Cases-cell">0</td>
+                      <td class="Reported Deaths-cell">0</td>
                     </tr>
-                </tbody>
-            </table>
+                  </tbody>
             </table>
         </div>
     </table-area>
     <footer>
         <div class="links">
-            <span><i class="far fa-calendar-alt"></i> Updated: April 11, 2020</span>
+            <span><i class="far fa-calendar-alt"></i> Updated: April 14, 2020</span>
         </div>
 
         <div class="header-title">Joe Carl Portfolio Project</div>
@@ -577,11 +610,11 @@
     <div id="casesLineModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Details: Cases</h2><br>
+                <h2>Details: Total Cases</h2><br>
             </div>
             <div class="modal-body">
-              <div id="casesModalLineChart">
-              </div>
+                <div id="casesModalLineChart">
+                </div>
             </div>
             <div class="modal-footer">
                 <a href="" class="close-modal casesLine" onclick="return false;">Close</a>
@@ -593,11 +626,11 @@
     <div id="deathsLineModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Details: Deaths</h2><br>
+                <h2>Details: Total Deaths</h2><br>
             </div>
             <div class="modal-body">
-              <div id="deathsModalLineChart">
-              </div>
+                <div id="deathsModalLineChart">
+                </div>
             </div>
             <div class="modal-footer">
                 <a href="" class="close-modal deathsLine" onclick="return false;">Close</a>
@@ -605,26 +638,26 @@
         </div>
     </div>
 
+    <!-- Modal content -->
+    <div id="casesdeathsBarModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Details: % Overall Cases/Deaths by Age</h2><br>
+            </div>
+            <div class="modal-body">
+                <div id="casesdeathsBarModalChart">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="" class="close-modal casesdeathsBar" onclick="return false;">Close</a>
+            </div>
+        </div>
+    </div>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.nanoscroller/0.8.7/css/nanoscroller.min.css" />
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nanoscroller/0.8.7/javascripts/jquery.nanoscroller.min.js"></script> -->
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js " integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q " crossorigin="anonymous "></script> -->
-    <!-- <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js "></script> -->
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.3/nouislider.min.css" rel="stylesheet">
+    <!-- noUI slider -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.0.3/nouislider.min.js"></script>
 
-
-    <!-- Font Awesome -->
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js "></script>
-
-    <!-- ChartsJS -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js "></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 
     <!-- Apex Charts -->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -632,8 +665,7 @@
     <!-- Leaflet -->
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
 
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+    <!-- Leaflet Easy Button -->
     <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
 
 
@@ -641,6 +673,18 @@
     <script src="js/state_cases_daily_breakdown.js"></script>
     <script src="js/state_deaths_daily.js "></script>
     <script src="js/state_deaths_daily_breakdown.js"></script>
+    <script src="js/4.14.js"></script>
+    <script src="js/4.13.js"></script>
+    <script src="js/4.12.js"></script>
+    <script src="js/4.11.js"></script>
+    <script src="js/4.10.js"></script>
+    <script src="js/4.9.js"></script>
+    <script src="js/4.8.js"></script>
+    <script src="js/4.7.js"></script>
+    <script src="js/4.6.js"></script>
+    <script src="js/4.5.js"></script>
+    <script src="js/4.4.js"></script>
+    <script src="js/4.3.js"></script>
     <script src="js/4.2.js"></script>
     <script src="js/4.1.js"></script>
     <script src="js/3.31.js"></script>

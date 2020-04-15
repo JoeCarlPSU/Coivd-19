@@ -1,29 +1,33 @@
+//Global Variables
+
 let mymap;
+let casesLegend;
+let deathsLegend
 let geojsonLayer;
 let casesBarModalChart
 let deathsBarModalChart
 let casesLineModalChart
 let deathsLineModalChart
+let casesDeathsBarModalChart
 let visualType = "Cases";
 let visualPieType = "Cases"
-let currentdate = "April 2, 2020";
+let currentdate = "April 14, 2020";
+let casesMax = 7004
+let deathsMax = 427
 
-$(document).ready(function() {
+document.addEventListener("DOMContentLoaded", function(event) { 
 
-
-    //Line & Bar Charts - First Row
-
-    // themeColors = {
-    //     cases: '#A8F9FF',
-    //     deaths: '#E06292',
-    // }
 
     themeColors = {
         cases: '#27DBC3',
         deaths: '#FF715B',
         female: '#A8F9FF',
         male: '#E06292',
+        deaths_css: 'rgba(74, 25, 66, 1)',
+        cases_css: 'rgba(44, 44, 84, 1)'
     }
+
+
 
 
     casesAlternate = {
@@ -66,6 +70,9 @@ $(document).ready(function() {
                 width: "100%",
                 height: "100%",
                 type: "bar",
+                sparkline: {
+                    enabled: true
+                },
                 toolbar: {
                     show: false,
                 },
@@ -192,14 +199,20 @@ $(document).ready(function() {
         div: 'casesDailyModalBarChart',
         barColor: themeColors.cases,
         title: 'Daily Cases',
-        name: 'Cases'
+        background: themeColors.deaths_css,
+        name: 'Cases',
+        yaxisTitle: 'Cases',
+        class: 'cases-download'
     }
 
     let deathsDailyModalBarChartOptions = {
         div: 'deathsDailyModalBarChart',
         barColor: themeColors.deaths,
         title: 'Daily Deaths',
-        name: 'Deaths'
+        background: themeColors.cases_css,
+        name: 'Deaths',
+        yaxisTitle: 'Deaths',
+        class: 'deaths-download'
     }
 
     let createBarModalChart = (json, chartOptions) => {
@@ -208,7 +221,6 @@ $(document).ready(function() {
             return e.date;
         });
 
-        console.log(labels)
 
         //Function to create the data
         let data = json.map(function(e) {
@@ -226,16 +238,22 @@ $(document).ready(function() {
                 width: "100%",
                 height: "100%",
                 type: "bar",
+                background: chartOptions.background,
                 toolbar: {
                     show: true,
+                    offsetX: -20,
+                    offsetY: 20,
                     tools: {
-                        download: true,
+                        download: `
+                        <div>
+                        <span><i class="fas fa-download fa-2x ${chartOptions.class}"></i>
+                            </div>`,
                         selection: true,
-                        zoom: true,
-                        zoomin: true,
-                        zoomout: true,
-                        pan: true,
-                        reset: true
+                        zoom: false,
+                        zoomin: false,
+                        zoomout: false,
+                        pan: false,
+                        reset: false
                     },
                 },
                 zoom: {
@@ -256,18 +274,49 @@ $(document).ready(function() {
             },
             grid: {
                 show: true,
+                borderColor: '#90A4AE',
+                strokeDashArray: 0,
+                position: 'back',
+                xaxis: {
+                    lines: {
+                        show: false
+                    }
+                },
+                yaxis: {
+                    lines: {
+                        show: true
+                    }
+                },
+                row: {
+                    colors: undefined,
+                    opacity: 0.5
+                },
+                column: {
+                    colors: undefined,
+                    opacity: 0.5
+                },
+                padding: {
+                    top: 30,
+                    right: 20,
+                    bottom: 0,
+                    left: 20,
+                },
             },
             xaxis: {
                 type: "category",
                 categories: labels,
                 labels: {
                     show: true,
-                    align: 'right',
-                    minWidth: 0,
-                    maxWidth: 160,
+                    rotate: -45,
+                    rotateAlways: true,
+                    hideOverlappingLabels: true,
+                    showDuplicates: false,
+                    trim: false,
+                    minHeight: undefined,
+                    maxHeight: 120,
                     style: {
                         colors: '#FFFFFF',
-                        fontSize: '12px',
+                        fontSize: '14px',
                         fontFamily: 'Open Sans',
                         fontWeight: 400,
                     },
@@ -288,11 +337,22 @@ $(document).ready(function() {
             },
             yaxis: {
                 show: true,
+                showAlways: true,
+                showForNullSeries: true,
+                seriesName: undefined,
+                opposite: false,
+                reversed: false,
+                logarithmic: false,
+                forceNiceScale: false,
+                floating: false,
+                decimalsInFloat: undefined,
                 axisTicks: {
-                    show: true,
+                    show: false,
                 },
                 axisBorder: {
                     show: true,
+                    offsetX: 0,
+                    offsetY: 0,
                 },
                 crosshairs: {
                     show: true,
@@ -307,9 +367,23 @@ $(document).ready(function() {
                     maxWidth: 160,
                     style: {
                         colors: '#FFFFFF',
-                        fontSize: '12px',
+                        fontSize: '16px',
                         fontFamily: 'Open Sans',
                         fontWeight: 400,
+                    },
+                    offsetX: 20,
+                    offsetY: 0,
+                },
+                title: {
+                    text: chartOptions.yaxisTitle,
+                    offsetX: -20,
+                    offsetY: 0,
+                    style: {
+                        color: '#FFFFFF',
+                        fontSize: '18px',
+                        fontFamily: 'Open Sans',
+                        fontWeight: 600,
+                        cssClass: 'apexcharts-xaxis-title',
                     },
                 },
             },
@@ -358,8 +432,8 @@ $(document).ready(function() {
                 text: chartOptions.title,
                 align: "left",
                 margin: 10,
-                offsetX: 0,
-                offsetY: 0,
+                offsetX: 20,
+                offsetY: 20,
                 floating: false,
                 style: {
                     fontSize: "20px",
@@ -423,11 +497,11 @@ $(document).ready(function() {
             fill: {
                 opacity: [0.25],
                 gradient: {
-                  inverseColors: false,
-                  shade: 'light',
-                  type: "vertical",
-                  opacityFrom: 0.85,
-                  opacityTo: 0.25,
+                    inverseColors: false,
+                    shade: 'light',
+                    type: "vertical",
+                    opacityFrom: 0.85,
+                    opacityTo: 0.25,
                 }
             },
             markers: {
@@ -560,17 +634,23 @@ $(document).ready(function() {
     let casesDailyModalLineChartOptions = {
         div: 'casesModalLineChart',
         barColor: [themeColors.cases, '#FFF275'],
+        background: themeColors.deaths_css,
         title: 'Total Cases',
         nameLine: 'Cases Total',
         nameBar: 'Cases Daily',
+        yaxisTitle: 'Cases',
+        class: 'cases-download'
     }
 
     let deathsDailyModalLineChartOptions = {
         div: 'deathsModalLineChart',
         barColor: [themeColors.deaths, '#9D8DF1'],
+        background: themeColors.cases_css,
         title: 'Total Deaths',
         nameLine: 'Deaths Total',
         nameBar: 'Deaths Daily',
+        yaxisTitle: 'Deaths',
+        class: 'deaths-download'
     }
 
     let createLineModalChart = (jsonLine, jsonBar, chartOptions) => {
@@ -593,16 +673,22 @@ $(document).ready(function() {
             chart: {
                 width: "100%",
                 height: "100%",
+                background: chartOptions.background,
                 toolbar: {
                     show: true,
+                    offsetX: -20,
+                    offsetY: 20,
                     tools: {
-                        download: true,
-                        selection: true,
-                        zoom: true,
-                        zoomin: true,
-                        zoomout: true,
-                        pan: true,
-                        reset: true
+                        download: `
+                        <div>
+                        <span><i class="fas fa-download fa-2x ${chartOptions.class}"></i>
+                            </div>`,
+                        selection: false,
+                        zoom: false,
+                        zoomin: false,
+                        zoomout: false,
+                        pan: false,
+                        reset: false
                     },
                 },
                 zoom: {
@@ -612,11 +698,11 @@ $(document).ready(function() {
             fill: {
                 opacity: [0.25, 1],
                 gradient: {
-                  inverseColors: false,
-                  shade: 'light',
-                  type: "vertical",
-                  opacityFrom: 0.85,
-                  opacityTo: 0.10,
+                    inverseColors: false,
+                    shade: 'light',
+                    type: "vertical",
+                    opacityFrom: 0.85,
+                    opacityTo: 0.10,
                 }
             },
             markers: {
@@ -647,6 +733,33 @@ $(document).ready(function() {
             },
             grid: {
                 show: true,
+                borderColor: '#90A4AE',
+                strokeDashArray: 0,
+                position: 'back',
+                xaxis: {
+                    lines: {
+                        show: false
+                    }
+                },
+                yaxis: {
+                    lines: {
+                        show: true
+                    }
+                },
+                row: {
+                    colors: undefined,
+                    opacity: 0.5
+                },
+                column: {
+                    colors: undefined,
+                    opacity: 0.5
+                },
+                padding: {
+                    top: 30,
+                    right: 20,
+                    bottom: 0,
+                    left: 20,
+                },
             },
             xaxis: {
                 type: "category",
@@ -660,12 +773,12 @@ $(document).ready(function() {
                     trim: false,
                     minHeight: undefined,
                     maxHeight: 120,
-                        style: {
-                            colors: '#FFFFFF',
-                            fontSize: '12px',
-                            fontFamily: 'Open Sans',
-                            fontWeight: 400,
-                        },
+                    style: {
+                        colors: '#FFFFFF',
+                        fontSize: '14px',
+                        fontFamily: 'Open Sans',
+                        fontWeight: 400,
+                    },
                 },
                 axisBorder: {
                     show: true,
@@ -698,12 +811,26 @@ $(document).ready(function() {
                     trim: false,
                     minHeight: undefined,
                     maxHeight: 120,
-                        style: {
-                            colors: '#FFFFFF',
-                            fontSize: '12px',
-                            fontFamily: 'Open Sans',
-                            fontWeight: 400,
-                        },
+                    style: {
+                        colors: '#FFFFFF',
+                        fontSize: '16px',
+                        fontFamily: 'Open Sans',
+                        fontWeight: 400,
+                    },
+                    offsetX: 20,
+                    offsetY: 0,
+                },
+                title: {
+                    text: chartOptions.yaxisTitle,
+                    offsetX: -20,
+                    offsetY: 0,
+                    style: {
+                        color: '#FFFFFF',
+                        fontSize: '18px',
+                        fontFamily: 'Open Sans',
+                        fontWeight: 600,
+                        cssClass: 'apexcharts-xaxis-title',
+                    },
                 },
                 tooltip: {
                     enabled: false,
@@ -750,13 +877,13 @@ $(document).ready(function() {
                     offsetY: 50,
                 },
             },
-            
+
             title: {
                 text: chartOptions.title,
                 align: "left",
                 margin: 10,
-                offsetX: 0,
-                offsetY: 0,
+                offsetX: 20,
+                offsetY: 20,
                 floating: false,
                 style: {
                     fontSize: "20px",
@@ -765,52 +892,52 @@ $(document).ready(function() {
                     color: "#ffffff ",
                 },
             },
-            
-        legend: {
-            show: true,
-            showForSingleSeries: false,
-            showForNullSeries: true,
-            showForZeroSeries: true,
-            position: 'bottom',
-            horizontalAlign: 'center',
-            floating: false,
-            fontSize: '14px',
-            fontFamily: 'Open Sans',
-            fontWeight: 400,
-            formatter: undefined,
-            inverseOrder: false,
-            width: undefined,
-            height: undefined,
-            tooltipHoverFormatter: undefined,
-            offsetX: 0,
-            offsetY: 0,
-            labels: {
-                colors: ['#ffffff'],
-                useSeriesColors: false
-            },
-            markers: {
-                width: 12,
-                height: 12,
-                strokeWidth: 0,
-                strokeColor: '#fff',
-                fillColors: undefined,
-                radius: 12,
-                customHTML: undefined,
-                onClick: undefined,
+
+            legend: {
+                show: true,
+                showForSingleSeries: false,
+                showForNullSeries: true,
+                showForZeroSeries: true,
+                position: 'bottom',
+                horizontalAlign: 'center',
+                floating: false,
+                fontSize: '14px',
+                fontFamily: 'Open Sans',
+                fontWeight: 400,
+                formatter: undefined,
+                inverseOrder: false,
+                width: undefined,
+                height: undefined,
+                tooltipHoverFormatter: undefined,
                 offsetX: 0,
-                offsetY: 0
+                offsetY: 0,
+                labels: {
+                    colors: ['#ffffff'],
+                    useSeriesColors: false
+                },
+                markers: {
+                    width: 12,
+                    height: 12,
+                    strokeWidth: 0,
+                    strokeColor: '#fff',
+                    fillColors: undefined,
+                    radius: 12,
+                    customHTML: undefined,
+                    onClick: undefined,
+                    offsetX: 0,
+                    offsetY: 0
+                },
+                itemMargin: {
+                    horizontal: 5,
+                    vertical: 1
+                },
+                onItemClick: {
+                    toggleDataSeries: true
+                },
+                onItemHover: {
+                    highlightDataSeries: true
+                },
             },
-            itemMargin: {
-                horizontal: 5,
-                vertical: 1
-            },
-            onItemClick: {
-                toggleDataSeries: true
-            },
-            onItemHover: {
-                highlightDataSeries: true
-            },
-        },
         };
 
         var chart = new ApexCharts(
@@ -840,15 +967,19 @@ $(document).ready(function() {
     let deathsBarModal = document.getElementById("deathsBarModal")
     let casesLineModalBtn = document.getElementById("casesLineModalBtn");
     let casesLineModal = document.getElementById("casesLineModal")
+    let deathsLineModalBtn = document.getElementById("deathsLineModalBtn")
     let deathsLineModal = document.getElementById("deathsLineModal")
+    let casesdeathsBarModalBtn = document.getElementById("casesdeathsBarModalBtn")
+    let casesdeathsBarModal = document.getElementById("casesdeathsBarModal")
     let closeCasesBarModal = document.querySelector(".casesBar")
     let closeDeathsBarModal = document.querySelector(".deathsBar")
     let closeCasesLineModal = document.querySelector(".casesLine")
     let closeDeathsLineModal = document.querySelector(".deathsLine")
+    let closeCasesDeathsBarModal = document.querySelector(".casesdeathsBar")
+
 
 
     casesBarModalBtn.addEventListener("click", function(event) {
-        console.log('error')
         casesBarModal.style.display = 'block'
         casesBarModalChart = createBarModalChart(
             state_cases_daily_breakdown,
@@ -903,13 +1034,13 @@ $(document).ready(function() {
     })
 
     //Pie Chart - Second Row
-    var pieOptions = {
+    let pieOptions = {
         chart: {
             type: 'pie',
             width: "100%",
             height: "100%",
             toolbar: {
-                show: true,
+                show: false,
                 tools: {
                     download: true,
                     selection: true,
@@ -921,7 +1052,7 @@ $(document).ready(function() {
                 },
             },
         },
-        series: [46, 53, 1],
+        series: [45, 54, 1],
         labels: ['Male', 'Female', 'Unknown'],
         colors: [themeColors.female, themeColors.male, '#FFF275'],
         dataLabels: {
@@ -1013,7 +1144,7 @@ $(document).ready(function() {
 
     }
 
-    var chartPie = new ApexCharts(document.getElementById("pieChart"), pieOptions);
+    let chartPie = new ApexCharts(document.getElementById("pieChart"), pieOptions);
 
     chartPie.render();
 
@@ -1027,11 +1158,10 @@ $(document).ready(function() {
         if (event.target.checked) {
             let mapTag = document.getElementById('pieChartContainer')
             visualType = "Cases";
-            mapTag.style.backgroundColor = 'rgba(52,63,87, 1)'
+            mapTag.style.backgroundColor = themeColors.deaths_css
 
             function reset() {
                 chartPie.w.globals.initialConfig.title.text = 'Cases by Sex'
-                console.log(pieOptions.series)
                 return pieOptions.series
             }
 
@@ -1041,7 +1171,7 @@ $(document).ready(function() {
 
             let mapTag = document.getElementById('pieChartContainer')
             visualType = "Deaths";
-            mapTag.style.backgroundColor = 'rgba(44, 44, 84, 1)'
+            mapTag.style.backgroundColor = themeColors.cases_css
 
             function appendData() {
                 chartPie.w.globals.initialConfig.title.text = 'Deaths by Sex'
@@ -1056,19 +1186,22 @@ $(document).ready(function() {
 
 
     //Stacked Comparison Chart - Thrid Row
-    var options = {
+    let stackedChartoptions = {
         series: [{
             name: '% of Cases',
             data: [1, 9, 13, 16, 20, 18, 13, 10]
         }, {
             name: '% of Deaths',
-            data: [0, 1, 2, 4, 11, 19, 28, 36]
+            data: [0, 1, 1, 5, 10, 18, 28, 37]
         }],
 
         chart: {
             type: 'bar',
             height: '100%',
-            width: '100%'
+            width: '100%',
+            toolbar: {
+                show: false,
+            },
         },
         colors: [themeColors.cases, themeColors.deaths],
         plotOptions: {
@@ -1114,7 +1247,7 @@ $(document).ready(function() {
             floating: false,
             decimalsInFloat: undefined,
             labels: {
-                show: true,
+                show: false,
                 align: 'right',
                 minWidth: 0,
                 maxWidth: 160,
@@ -1140,9 +1273,17 @@ $(document).ready(function() {
             },
             crosshairs: {
                 show: true,
+                width: 1,
+                position: 'back',
+                opacity: 0.9,        
+                stroke: {
+                    color: '#b6b6b6',
+                    width: 0,
+                    dashArray: 0,
+                },
             },
         },
-             tooltip: {
+        tooltip: {
             enabled: true,
             enabledOnSeries: undefined,
             shared: true,
@@ -1162,6 +1303,9 @@ $(document).ready(function() {
             x: {
                 show: true,
                 format: "MM",
+                formatter: function(val) {
+                    return `Age Group: ${val}`
+                },
             },
             y: {
                 formatter: function(val) {
@@ -1203,7 +1347,7 @@ $(document).ready(function() {
             showForNullSeries: true,
             showForZeroSeries: true,
             position: 'bottom',
-            horizontalAlign: 'center', 
+            horizontalAlign: 'center',
             floating: false,
             fontSize: '14px',
             fontFamily: 'Open Sans',
@@ -1244,134 +1388,287 @@ $(document).ready(function() {
         }
     };
 
-    var chart = new ApexCharts(document.getElementById("stackedChart"), options);
-    chart.render();
+    let stackedChart = new ApexCharts(document.getElementById("stackedChart"), stackedChartoptions);
+    stackedChart.render();
+
+    let stackedModalChartOptions = {
+        series: [{
+            name: '% of Cases',
+            data: [1, 9, 13, 16, 20, 18, 13, 10]
+        }, {
+            name: '% of Deaths',
+            data: [0, 1, 1, 5, 10, 18, 28, 37]
+        }],
+
+        chart: {
+            type: 'bar',
+            height: '100%',
+            width: '100%',
+            background: themeColors.cases_css,
+            toolbar: {
+                show: true,
+                offsetX: -20,
+                offsetY: 20,
+                tools: {
+                    //   download: '<img src="C:/PSUPersonal/covid-19-mi/images/download_deaths.png" class="ico-download-casesDeaths" width="50">',
+                    download: `
+                <div>
+                <span><i class="fas fa-download fa-2x casesdeaths-download"></i>
+                    </div>`
+                },
+                autoSelected: 'zoom'
+            },
+        },
+        zoom: {
+            enabled: true
+        },
+        colors: [themeColors.cases, themeColors.deaths],
+        plotOptions: {
+            bar: {
+                horizontal: true,
+                endingShape: "rounded",
+                dataLabels: {
+                    position: 'top',
+                },
+            }
+        },
+        grid: {
+            show: true,
+            padding: {
+                top: 10,
+                right: 35,
+                bottom: 10,
+                left: 35,
+            },
+        },
+        dataLabels: {
+            enabled: false,
+            offsetX: -6,
+            style: {
+                fontSize: '12px',
+                colors: ['#fff']
+            }
+        },
+        stroke: {
+            show: false,
+            width: 1,
+            colors: ['#fff']
+        },
+        yaxis: {
+            show: true,
+            showAlways: true,
+            showForNullSeries: true,
+            seriesName: undefined,
+            opposite: false,
+            reversed: false,
+            logarithmic: false,
+            forceNiceScale: false,
+            floating: false,
+            decimalsInFloat: undefined,
+            labels: {
+                show: true,
+                align: 'right',
+                minWidth: 0,
+                maxWidth: 160,
+                style: {
+                    colors: '#FFFFFF',
+                    fontSize: '16px',
+                    fontFamily: 'Open Sans',
+                    fontWeight: 400,
+                },
+            },
+            title: {
+                text: 'Age Groups',
+                offsetX: 20,
+                offsetY: 0,
+                style: {
+                    color: '#FFFFFF',
+                    fontSize: '18px',
+                    fontFamily: 'Open Sans',
+                    fontWeight: 600,
+                    cssClass: 'apexcharts-xaxis-title',
+                },
+            },
+            crosshairs: {
+                show: true,
+                position: 'back',
+                stroke: {
+                    color: '#b6b6b6',
+                    width: 1,
+                    dashArray: 0,
+                },
+            },
+            tooltip: {
+                enabled: true,
+                offsetX: 0,
+            },
+        },
+        xaxis: {
+            type: "category",
+            categories: ['0-19', '20-29', '30-39', '40-49', '50-59', '60-69', '70-79', '80+'],
+            labels: {
+                show: true,
+                align: 'right',
+                minWidth: 0,
+                maxWidth: 160,
+                formatter: function(value) {
+                    return `${value} %`
+                },
+                style: {
+                    colors: '#FFFFFF',
+                    fontSize: '16px',
+                    fontFamily: 'Open Sans',
+                    fontWeight: 400,
+                },
+            },
+            axisBorder: {
+                show: true,
+            },
+            axisTicks: {
+                show: true,
+            },
+            crosshairs: {
+                show: true,
+                position: 'back',
+                stroke: {
+                    color: '#b6b6b6',
+                    width: 1,
+                    dashArray: 0,
+                },
+            },
+            tooltip: {
+                enabled: true,
+                offsetX: 0,
+            },
+            tickAmount: 15,
+            tickPlacement: 'on'
+        },
+        tooltip: {
+            enabled: true,
+            enabledOnSeries: undefined,
+            shared: true,
+            followCursor: true,
+            intersect: false,
+            inverseOrder: false,
+            custom: undefined,
+            fillSeriesColor: false,
+            theme: 'dark',
+            style: {
+                fontSize: "12px",
+                fontFamily: "Open Sans",
+            },
+            onDatasetHover: {
+                highlightDataSeries: true,
+            },
+            x: {
+                show: true,
+                format: "MM",
+                formatter: function(val) {
+                    return `Age Group: ${val}`
+                },
+            },
+            y: {
+                formatter: function(val) {
+                    let value = Math.floor(val)
+                    return `${value}%`
+                },
+            },
+            z: {
+                formatter: undefined,
+                title: "Size: ",
+            },
+            marker: {
+                show: true,
+            },
+            fixed: {
+                enabled: false,
+                position: "topRight",
+                offsetX: 0,
+                offsetY: 50,
+            },
+        },
+        title: {
+            text: '% Overall Cases/Deaths by Age',
+            align: "left",
+            margin: 10,
+            offsetX: 20,
+            offsetY: 20,
+            floating: false,
+            style: {
+                fontSize: "24px",
+                fontWeight: "bold",
+                fontFamily: "Open Sans",
+                color: "#FFFFFF",
+            },
+        },
+        legend: {
+            show: true,
+            showForSingleSeries: false,
+            showForNullSeries: true,
+            showForZeroSeries: true,
+            position: 'bottom',
+            horizontalAlign: 'center',
+            floating: false,
+            fontSize: '18px',
+            fontFamily: 'Open Sans',
+            fontWeight: 600,
+            formatter: undefined,
+            inverseOrder: false,
+            width: undefined,
+            height: undefined,
+            tooltipHoverFormatter: undefined,
+            offsetX: 0,
+            offsetY: 0,
+            labels: {
+                colors: "#FFFFFF",
+                useSeriesColors: false
+            },
+            markers: {
+                width: 12,
+                height: 12,
+                strokeWidth: 0,
+                strokeColor: '#fff',
+                fillColors: undefined,
+                radius: 12,
+                customHTML: undefined,
+                onClick: undefined,
+                offsetX: 0,
+                offsetY: 0
+            },
+            itemMargin: {
+                horizontal: 5,
+                vertical: 0
+            },
+            onItemClick: {
+                toggleDataSeries: true
+            },
+            onItemHover: {
+                highlightDataSeries: true
+            },
+        }
+    };
 
 
-    //   let optionsold = {
-    //     plotOptions: {
-    //         bar: {
-    //             horizontal: false,
-    //             endingShape: "rounded",
-    //         },
-    //     },
-    //     chart: {
-    //         width: "100%",
-    //         height: "100%",
-    //         type: "bar",
-    //         toolbar: {
-    //             show: false,
-    //         },
-    //     },
-    //     series: [{
-    //         name: chartOptions.name,
-    //         data: data,
-    //     }, ],
-    //     fill: {
-    //         colors: chartOptions.barColor,
-    //         opacity: 1,
-    //         type: "solid",
-    //     },
-    //     dataLabels: {
-    //         enabled: false,
-    //     },
-    //     grid: {
-    //         show: false,
-    //         padding: {
-    //             top: 10,
-    //             right: 25,
-    //             bottom: 10,
-    //             left: 25,
-    //         },
-    //     },
-    //     xaxis: {
-    //         type: "category",
-    //         categories: labels,
-    //         labels: {
-    //             show: false,
-    //         },
-    //         axisBorder: {
-    //             show: false,
-    //         },
-    //         axisTicks: {
-    //             show: false,
-    //         },
-    //         crosshairs: {
-    //             show: true,
-    //         },
-    //     },
-    //     yaxis: {
-    //         show: false,
-    //         axisTicks: {
-    //             show: false,
-    //         },
-    //         crosshairs: {
-    //             show: false,
-    //         },
-    //         tooltip: {
-    //             enabled: false,
-    //         },
-    //     },
-    //     tooltip: {
-    //         enabled: true,
-    //         enabledOnSeries: undefined,
-    //         shared: true,
-    //         followCursor: true,
-    //         intersect: false,
-    //         inverseOrder: false,
-    //         custom: undefined,
-    //         fillSeriesColor: false,
-    //         theme: 'dark',
-    //         style: {
-    //             fontSize: "12px",
-    //             fontFamily: "Open Sans",
-    //         },
-    //         onDatasetHover: {
-    //             highlightDataSeries: true,
-    //         },
-    //         x: {
-    //             show: true,
-    //             format: "MM",
-    //         },
-    //         y: {
-    //             formatter: undefined,
-    //             title: {
-    //                 formatter: (seriesName) => seriesName,
-    //             },
-    //         },
-    //         z: {
-    //             formatter: undefined,
-    //             title: "Size: ",
-    //         },
-    //         marker: {
-    //             show: false,
-    //         },
-    //         fixed: {
-    //             enabled: true,
-    //             position: "topLeft",
-    //             offsetX: 0,
-    //             offsetY: 50,
-    //         },
-    //     },
-    //     title: {
-    //         text: chartOptions.title,
-    //         align: "center",
-    //         margin: 10,
-    //         offsetX: 0,
-    //         offsetY: 0,
-    //         floating: false,
-    //         style: {
-    //             fontSize: "20px",
-    //             fontWeight: "bold",
-    //             fontFamily: "Open Sans",
-    //             color: "#FFFFFF",
-    //         },
-    //     },
-    //     theme: {
-    //         mode: 'light',
-    //         palette: 'palette10',
-    //     }
-    // };
+
+    let createStackedModalChart = () => {
+
+        let stackedModalChart = new ApexCharts(document.getElementById("casesdeathsBarModalChart"), stackedModalChartOptions);
+
+        stackedModalChart.render();
+
+        return stackedModalChart
+    }
+
+    casesdeathsBarModalBtn.addEventListener("click", function(event) {
+        casesdeathsBarModal.style.display = 'block'
+        casesDeathsBarModalChart = createStackedModalChart()
+    })
+
+    closeCasesDeathsBarModal.addEventListener("click", function(event) {
+        casesdeathsBarModal.style.display = 'none'
+        casesDeathsBarModalChart.destroy();
+    })
+
 
 
 
@@ -1381,27 +1678,35 @@ $(document).ready(function() {
         13.25
     );
 
+    mymap.attributionControl.addAttribution('<a href="https://apexcharts.com/">Apex Charts</a>');
+
     L.easyButton("fa-home", function() {
         mymap.fitBounds(geojsonLayer.getBounds());
     }).addTo(mymap);
 
+
     let casesColors = {
-        1: "white",
-        2: "#ece7f2",
-        3: "#d0d1e6",
-        4: "#a6bddb",
-        5: "#74a9cf",
-        6: "#3690c0",
-        7: "#0570b0",
-        8: "#045a8d",
-        9: "#023858",
+        1: "#ffffff",
+        2: "#75E8D8",
+        3: "#4EE1CD",
+        4: "#27DBC3",
+        5: "#20B4A0",
+        6: "#198C7D",
+        7: "#126459",
+        8: "#0B3C36",
+        9: "#082824",
     };
 
     let deathsColors = {
-        1: "#fee5d9",
-        2: "#fcae91",
-        3: "##fb6a4a",
-        4: "#cb181d",
+        1: "white",
+        2: "#FFA496",
+        3: "#FF8A78",
+        4: "#FF715B",
+        5: "#D15D4B",
+        6: "#A3483A",
+        7: "#74342A",
+        8: "#461F19",
+        9: "#2F1511"
     };
 
     let casesToolTips = {
@@ -1421,79 +1726,117 @@ $(document).ready(function() {
         2: "deaths-2-tool-tips",
         3: "deaths-3-tool-tips",
         4: "deaths-4-tool-tips",
+        5: "deaths-5-tool-tips",
+        6: "deaths-6-tool-tips",
+        7: "deaths-7-tool-tips",
+        8: "deaths-8-tool-tips",
+        9: "deaths-9-tool-tips",
     };
 
-    let dailCasesNumbers = {
+    let dailyCasesNumbers = {
         1: 0,
         2: 1,
-        3: 9,
-        4: 34,
-        5: 102,
-        6: 276,
-        7: 1316,
-        8: 3516,
-        9: 6816,
+        3: 11,
+        4: 18,  
+        5: 35,
+        6: 68,
+        7: 118,
+        8: 326,
+        9: 1031,
     };
+
+    
+    let dailyDeathsNumbers = {
+        1: 0,
+        2: 1,
+        3: 3,
+        4: 6,
+        5: 8,
+        6: 10,
+        7: 22,
+        8: 87,
+        9: 294
+       }
 
     //Function for styline the geoJSON files
     let casesGetColor = (cases) => {
-        return cases > dailCasesNumbers[9] ?
+        return cases > dailyCasesNumbers[9] ?
             casesColors[9] :
-            cases > dailCasesNumbers[8] ?
+            cases > dailyCasesNumbers[8] ?
             casesColors[8] :
-            cases > dailCasesNumbers[7] ?
+            cases > dailyCasesNumbers[7] ?
             casesColors[7] :
-            cases > dailCasesNumbers[6] ?
+            cases > dailyCasesNumbers[6] ?
             casesColors[6] :
-            cases > dailCasesNumbers[5] ?
+            cases > dailyCasesNumbers[5] ?
             casesColors[5] :
-            cases > dailCasesNumbers[4] ?
+            cases > dailyCasesNumbers[4] ?
             casesColors[4] :
-            cases > dailCasesNumbers[3] ?
+            cases > dailyCasesNumbers[3] ?
             casesColors[3] :
-            cases >= dailCasesNumbers[2] ?
+            cases >= dailyCasesNumbers[2] ?
             casesColors[2] :
             casesColors[1];
     };
 
     let deathsGetColor = (deaths) => {
-        return deaths > 600 ?
+        return deaths > dailyDeathsNumbers[9] ?
+            deathsColors[9] :
+            deaths > dailyDeathsNumbers[8] ?
+            deathsColors[8] :
+            deaths > dailyDeathsNumbers[7] ?
+            deathsColors[7] :
+            deaths > dailyDeathsNumbers[6] ?
+            deathsColors[6] :
+            deaths > dailyDeathsNumbers[5] ?
+            deathsColors[5] :
+            deaths > dailyDeathsNumbers[4] ?
             deathsColors[4] :
-            deaths > 100 ?
+            deaths > dailyDeathsNumbers[3] ?
             deathsColors[3] :
-            deaths > 10 ?
+            deaths >= dailyDeathsNumbers[2] ?
             deathsColors[2] :
             deathsColors[1];
     };
 
     let casesClass = (layer) => {
         let cases = layer.feature.properties.cases;
-        return cases > dailCasesNumbers[9] ?
+        return cases > dailyCasesNumbers[9] ?
             casesToolTips[9] :
-            cases > dailCasesNumbers[8] ?
+            cases > dailyCasesNumbers[8] ?
             casesToolTips[8] :
-            cases > dailCasesNumbers[7] ?
+            cases > dailyCasesNumbers[7] ?
             casesToolTips[7] :
-            cases > dailCasesNumbers[6] ?
+            cases > dailyCasesNumbers[6] ?
             casesToolTips[6] :
-            cases > dailCasesNumbers[5] ?
+            cases > dailyCasesNumbers[5] ?
             casesToolTips[5] :
-            cases > dailCasesNumbers[4] ?
+            cases > dailyCasesNumbers[4] ?
             casesToolTips[4] :
-            cases > dailCasesNumbers[3] ?
+            cases > dailyCasesNumbers[3] ?
             casesToolTips[3] :
-            cases >= dailCasesNumbers[2] ?
+            cases >= dailyCasesNumbers[2] ?
             casesToolTips[2] :
             casesToolTips[1];
     };
 
     let deathsClass = (layer) => {
         let deaths = layer.feature.properties.deaths;
-        return deaths > 600 ?
+        return deaths > dailyDeathsNumbers[9] ?
+            deathsToolTips[9] :
+            deaths > dailyDeathsNumbers[8] ?
+            deathsToolTips[8] :
+            deaths > dailyDeathsNumbers[7] ?
+            deathsToolTips[7] :
+            deaths > dailyDeathsNumbers[6] ?
+            deathsToolTips[6] :
+            deaths > dailyDeathsNumbers[5] ?
+            deathsToolTips[5] :
+            deaths > dailyDeathsNumbers[4] ?
             deathsToolTips[4] :
-            deaths > 100 ?
+            deaths > dailyDeathsNumbers[3] ?
             deathsToolTips[3] :
-            deaths > 10 ?
+            deaths >= dailyDeathsNumbers[2] ?
             deathsToolTips[2] :
             deathsToolTips[1];
     };
@@ -1511,7 +1854,7 @@ $(document).ready(function() {
 
     let deathsStyle = (feature) => {
         return {
-            fillColor: deathsGetColor(feature.properties.cases),
+            fillColor: deathsGetColor(feature.properties.deaths),
             weight: 1,
             opacity: 1,
             color: "black",
@@ -1598,7 +1941,8 @@ $(document).ready(function() {
 
     // //Add to map function
     let addToMap = (json) => {
-        console.log(visualType);
+
+
         if (visualType === "Cases") {
             geojsonLayer = L.geoJSON(json, {
                 style: casesStyle,
@@ -1615,10 +1959,46 @@ $(document).ready(function() {
     };
 
     //add the initial current data on map load
-    addToMap(aprilTwo);
+    addToMap(aprilFourteen);
 
     let addGeoJSONLayer = (date) => {
         switch (date) {
+            case "4/14/2020":
+                addToMap(aprilFourteen);
+                break;
+            case "4/13/2020":
+                addToMap(aprilThirteen);
+                break;
+            case "4/12/2020":
+                addToMap(aprilTwelve);
+                break;
+            case "4/11/2020":
+                addToMap(aprilEleven);
+                break;
+            case "4/10/2020":
+                addToMap(aprilTen);
+                break;
+            case "4/9/2020":
+                addToMap(aprilNine);
+                break;
+            case "4/8/2020":
+                addToMap(aprilEight);
+                break;
+            case "4/7/2020":
+                addToMap(aprilSeven);
+                break;
+            case "4/6/2020":
+                addToMap(aprilSix);
+                break;
+            case "4/5/2020":
+                addToMap(aprilFive);
+                break;
+            case "4/4/2020":
+                addToMap(aprilFour);
+                break;
+            case "4/3/2020":
+                addToMap(aprilThree);
+                break;
             case "4/2/2020":
                 addToMap(aprilTwo);
                 break;
@@ -1691,6 +2071,62 @@ $(document).ready(function() {
         }
     };
 
+
+    casesLegend = L.control({ position: 'topright' });
+
+    casesLegend.onAdd = function(map) {
+
+        var div = L.DomUtil.create('div', 'info legend');
+
+        var grades = Object.keys(dailyCasesNumbers).map(function(key) {
+            return dailyCasesNumbers[key];
+        });
+
+        labels = [];
+
+        // loop through our density intervals and generate a label with a colored square for each interval
+        for (var i = 0; i < grades.length; i++) {
+            if (grades[i] != 0) {
+                div.innerHTML +=
+                    '<i style="background:' + casesGetColor(grades[i]) + '"></i> ' +
+                    grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '-' + casesMax);
+            } else {
+                div.innerHTML +=
+                    '<i style="background:' + casesGetColor(grades[i]) + '"></i> 0 <br>';
+            }
+        }
+
+        return div;
+    };
+
+    casesLegend.addTo(mymap);
+
+    deathsLegend = L.control({ position: 'topright' });
+
+    deathsLegend.onAdd = function(map) {
+
+        var div = L.DomUtil.create('div', 'info legend');
+
+        var grades = Object.keys(dailyDeathsNumbers).map(function(key) {
+            return dailyDeathsNumbers[key];
+        });
+            labels = [];
+
+        // loop through our density intervals and generate a label with a colored square for each interval
+        for (var i = 0; i < grades.length; i++) {
+            if (grades[i] != 0) {
+                div.innerHTML +=
+                    '<i style="background:' + deathsGetColor(grades[i]) + '"></i> ' +
+                    grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '-' + deathsMax);
+            } else {
+                div.innerHTML +=
+                    '<i style="background:' + deathsGetColor(grades[i]) + '"></i> 0 <br>';
+            }
+        }
+
+        return div;
+    };
+
     var slider = document.getElementById("slider-range");
 
     noUiSlider.create(slider, {
@@ -1719,19 +2155,29 @@ $(document).ready(function() {
     });
 
     const checkbox = document.getElementById("fs");
+    const uiHandle = document.querySelector(".noUi-connect")
+
 
 
     checkbox.addEventListener("change", (event) => {
+
         let value = Math.trunc(slider.noUiSlider.get());
         let newdate = new Date(value).toLocaleDateString();
         if (event.target.checked) {
             let mapTag = document.getElementsByTagName("map")[0]
             visualType = "Cases";
-            mapTag.style.backgroundColor = 'rgba(52,63,87, 1)'
+            mapTag.style.backgroundColor = themeColors.deaths_css
+            uiHandle.style.setProperty('background', themeColors.cases, 'important');
+            deathsLegend.remove()
+            casesLegend.addTo(mymap);
+
         } else {
             let mapTag = document.getElementsByTagName("map")[0]
             visualType = "Deaths";
-            mapTag.style.backgroundColor = 'rgba(44, 44, 84, 1)'
+            mapTag.style.backgroundColor = themeColors.cases_css
+            uiHandle.style.setProperty('background', themeColors.deaths, 'important');
+            casesLegend.remove()
+            deathsLegend.addTo(mymap);
         }
         geojsonLayer.remove();
         addGeoJSONLayer(newdate);

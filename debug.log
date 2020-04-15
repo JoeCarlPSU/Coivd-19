@@ -1,0 +1,22 @@
+[0413/011733.034:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0413/011733.069:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0413/011733.075:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0413/011733.546:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0413/011733.546:ERROR:exception_snapshot_win.cc(98)] thread ID 30812 not found in process
+[0413/011733.546:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0413/011733.546:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0413/011733.357:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0413/011733.546:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0413/011733.546:ERROR:exception_snapshot_win.cc(98)] thread ID 23748 not found in process
+[0413/011733.547:ERROR:exception_snapshot_win.cc(98)] thread ID 29860 not found in process
+[0413/011733.546:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0413/011733.547:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0413/011733.547:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0413/011733.547:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0413/011733.547:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0413/011733.547:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0413/011733.547:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0413/011733.547:ERROR:exception_snapshot_win.cc(98)] thread ID 20168 not found in process
+[0413/011733.753:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0413/011733.753:ERROR:exception_snapshot_win.cc(98)] thread ID 27020 not found in process
+[0413/011733.754:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: An attempt was made to access an exiting process. (0xc000010a)

@@ -28,4 +28,8 @@ let state_cases_daily_breakdown = [{"date":"3/11/2020","value":0},
 {"date":"4/7/2020","value":1749},
 {"date":"4/8/2020","value":1376},
 {"date":"4/9/2020","value":1158},
-{"date":"4/10/2020","value":1279}]
+{"date":"4/10/2020","value":1279},
+{"date":"4/11/2020","value":1210},
+{"date":"4/12/2020","value":645},
+{"date":"4/13/2020","value":997},
+{"date":"4/14/2020","value":1366}]

@@ -2,60 +2,42 @@ $cards-padding: (
   size: 0px,
 );
 
-// $theme-colors: (
-//     color1: rgba(234, 234, 234, 1),
-//     color2: rgba(137, 49, 104, 1),
-//     color3: rgba(74, 25, 66, 1),
-//     color4: rgba(46, 28, 43, 1),
-//     color5: #343a40,
-//     color2a: rgba(137, 49, 104, 0.65)
-//     );
-
-// $theme-colors: (
-//     color4: rgba(68, 13, 15, 1),
-//     color3: rgba(96, 58, 64, 1),
-//     color2: rgba(132, 89, 107, 1),
-//     color5: #343a40,
-//     color1: rgba(234, 234, 234, 1),
-//     color2a: rgba(132, 89, 107, 0.65),
-// );
-
-// $theme-colors: (
-//     color4: rgba(68, 13, 15, 1),
-//     color3: rgba(91, 96, 114, 1),
-//     color2: rgba(91, 74, 90,1),
-//     color5: #343a40,
-//     color1: rgba(234, 234, 234, 1),
-//     color2a: rgba(91, 74, 90,0.10),
-// );
-
 $theme-colors: (
-    color4: rgba(68, 13, 15, 1),
-    // color3: rgba(74, 25, 66, 1),
-    // color3: rgba(8, 8, 42, 1),
-    color2: rgba(52,63,87, 1),
-    color3: rgba(44, 44, 84, 1),
-    color5: #343a40,
-    color1: rgba(234, 234, 234, 1),
-    color2a: rgba(91, 74, 90,0.10),
+  color1: rgba(234, 234, 234, 1),
+  color2: rgba(74, 25, 66, 1),
+  color3: rgba(44, 44, 84, 1),
+  color4: rgba(68, 13, 15, 1),
+  color5: #899eaf,
+  color2a: rgba(91, 74, 90, 0.5),
 );
 
-
 $js-colors: (
-    cases: #27DBC3,
-    deaths: #FF715B
+  cases: #27dbc3,
+  deaths: #ff715b,
 );
 
 $cases-colors: (
-  color1: #fff7fb,
-  color2: #ece7f2,
-  color3: #d0d1e6,
-  color4: #a6bddb,
-  color5: #74a9cf,
-  color6: #3690c0,
-  color7: #0570b0,
-  color8: #045a8d,
-  color9: #023858,
+  color1: #ffffff,
+  color2: #75e8d8,
+  color3: #4ee1cd,
+  color4: #27dbc3,
+  color5: #20b4a0,
+  color6: #198c7d,
+  color7: #126459,
+  color8: #0b3c36,
+  color9: #082824,
+);
+
+$deaths-colors: (
+  color1: #ffffff,
+  color2: #ffa496,
+  color3: #ff8a78,
+  color4: #ff715b,
+  color5: #d15d4b,
+  color6: #a3483a,
+  color7: #74342a,
+  color8: #461f19,
+  color9: #2f1511,
 );
 
 * {
@@ -70,10 +52,20 @@ html {
 body {
   font-family: "Open Sans", sans-serif;
   margin: 0;
-  background-color: map-get($map: $theme-colors, $key: color5);
+  background: #16786b; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #ba5343,
+    #16786b
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to left,
+    #ba5343,
+    #16786b
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 8% 35% 35% 35% 35% 35% 35% 50% 4%;
+  grid-template-rows: 8% 40% 40% 40% 40% 40% 40% 50% 4%;
   grid-template-areas: "header" "chart1" "chart2" "chart3" "chart4" "chart5" "chart6" "map" "footer";
 }
 
@@ -81,7 +73,6 @@ body {
 
 header {
   grid-area: header;
-  background-color: map-get($map: $theme-colors, $key: color5);
   color: white;
   display: flex;
 
@@ -90,7 +81,6 @@ header {
     display: none;
     justify-content: flex-start;
     align-items: center;
-    // border: 1px dashed red;
   }
 
   .header-title {
@@ -98,7 +88,6 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    // border: 1px dashed red;
     font-weight: bold;
     font-size: 20px;
   }
@@ -108,17 +97,16 @@ header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    // border: 1px dashed red;
     padding-right: 20px;
   }
 
   .fa-stack:hover {
-    color: map-get($map: $theme-colors, $key: color3);
+    color: map-get($map: $theme-colors, $key: color2);
     transition: all 0.2s;
   }
 
   .nav-item {
-    color: map-get($map: $theme-colors, $key: color2);
+    color: map-get($map: $theme-colors, $key: color3);
   }
 
   .links a {
@@ -129,7 +117,7 @@ header {
 
 footer {
   grid-area: footer;
-  background-color: map-get($map: $theme-colors, $key: color5);
+  background-color: map-get($map: $theme-colors, $key: color3);
   color: white;
   display: flex;
 
@@ -138,7 +126,6 @@ footer {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    // border: 1px dashed red;
     padding-left: 20px;
   }
 
@@ -147,7 +134,6 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    // border: 1px dashed red;
     font-weight: bold;
     font-size: 15px;
   }
@@ -157,7 +143,6 @@ footer {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    // border: 1px dashed red;
   }
 
   .links a {
@@ -167,7 +152,6 @@ footer {
 }
 
 /* iphone 6, 7, 8 */
-
 @media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (-webkit-device-pixel-ratio: 2) {
   header {
     .links {
@@ -175,12 +159,6 @@ footer {
     }
 
     .header-title {
-      // flex: 1;
-      // display: flex;
-      // justify-content: center;
-      // align-items: center;
-      // border: 1px dashed red;
-      // font-weight: bold;
       font-size: 18px;
     }
 
@@ -204,12 +182,6 @@ footer {
     }
 
     .header-title {
-      // flex: 1;
-      // display: flex;
-      // justify-content: center;
-      // align-items: center;
-      // border: 1px dashed red;
-      // font-weight: bold;
       font-size: 18px;
     }
 
@@ -233,12 +205,6 @@ footer {
     }
 
     .header-title {
-      // flex: 1;
-      // display: flex;
-      // justify-content: center;
-      // align-items: center;
-      // border: 1px dashed red;
-      // font-weight: bold;
       font-size: 18px;
     }
 
@@ -262,12 +228,6 @@ footer {
     }
 
     .header-title {
-      // flex: 1;
-      // display: flex;
-      // justify-content: center;
-      // align-items: center;
-      // border: 1px dashed red;
-      // font-weight: bold;
       font-size: 18px;
     }
 
@@ -291,12 +251,6 @@ footer {
     }
 
     .header-title {
-      // flex: 1;
-      // display: flex;
-      // justify-content: center;
-      // align-items: center;
-      // border: 1px dashed red;
-      // font-weight: bold;
       font-size: 18px;
     }
 
@@ -313,17 +267,9 @@ footer {
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
   header {
-    .links {
-      // display: none;
-    }
+
 
     .header-title {
-      // flex: 1;
-      // display: flex;
-      // justify-content: center;
-      // align-items: center;
-      // border: 1px dashed red;
-      // font-weight: bold;
       font-size: 16px;
     }
 
@@ -332,7 +278,6 @@ footer {
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      border: 1px dashed red;
     }
 
     .links a {
@@ -344,17 +289,8 @@ footer {
 
 @media only screen and (min-device-width: 834px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
   header {
-    .links {
-      // display: none;
-    }
 
     .header-title {
-      // flex: 1;
-      // display: flex;
-      // justify-content: center;
-      // align-items: center;
-      // border: 1px dashed red;
-      // font-weight: bold;
       font-size: 18px;
     }
 
@@ -363,7 +299,6 @@ footer {
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      border: 1px dashed red;
     }
 
     .links a {
@@ -376,17 +311,8 @@ footer {
 /* Ipdad pro */
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
   header {
-    .links {
-      // display: none;
-    }
 
     .header-title {
-      // flex: 1;
-      // display: flex;
-      // justify-content: center;
-      // align-items: center;
-      // border: 1px dashed red;
-      // font-weight: bold;
       font-size: 20px;
     }
 
@@ -395,7 +321,6 @@ footer {
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      border: 1px dashed red;
     }
 
     .links a {
@@ -439,7 +364,7 @@ map {
   grid-area: map;
   background-color: map-get($map: $theme-colors, $key: color2);
   position: relative;
-  transition: 0.2 ease-in
+  transition: 0.2 ease-in;
 }
 
 table-area {
@@ -448,8 +373,6 @@ table-area {
 
 @media only screen and (min-width: 1366px) {
   body {
-    // margin: 0;
-    // margin: 15px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto 28% 28% 28% 3%;
@@ -513,157 +436,53 @@ table-area {
   }
 }
 
-.card-expanded-cases {
+.card-expanded-cases,
+.card-expanded-bar-cases,
+.card-expanded-bar-deaths,
+.card-expanded-deaths,
+.card-expanded-cases-deaths {
   position: absolute;
   z-index: 1;
-  margin-left: 2px;
-  margin-top: 2px;
+  margin-left: 0px;
+  margin-top: 6px;
   display: inline-block;
-  //   padding: 0.35em 0.35em;
-  //   border: 0.1em solid #ffffff;
   border-radius: 0.12em;
   box-sizing: border-box;
   text-decoration: none;
   font-weight: 300;
-  //   color: #ffffff;
   text-align: center;
   transition: all 0.2s;
-  //   border-radius: 45%;
   cursor: pointer;
   .fa-expand {
     color: white;
   }
-  .fa-stack:hover {
-    color: map-get($map: $js-colors, $key: cases);
-    transition: all 0.2s;
-    
-    .fa-expand {
-        color: black;
-      }
-    }
 }
 
+.card-expanded-cases,
 .card-expanded-bar-cases {
-  position: absolute;
-  z-index: 1;
-  margin-left: 2px;
-  margin-top: 2px;
-  display: inline-block;
-  //   padding: 0.35em 0.35em;
-  //   border: 0.1em solid #ffffff;
-  border-radius: 0.12em;
-  box-sizing: border-box;
-  text-decoration: none;
-  font-weight: 300;
-  //   color: #ffffff;
-  text-align: center;
-  transition: all 0.2s;
-  //   border-radius: 45%;
-  cursor: pointer;
-  .fa-expand {
-    color: white;
-  }
   .fa-stack:hover {
     color: map-get($map: $js-colors, $key: cases);
     transition: all 0.2s;
 
     .fa-expand {
-        color: black;
-      }
+      color: black;
+    }
   }
 }
 
-.card-expanded-bar-deaths {
-  position: absolute;
-  z-index: 1;
-  margin-left: 2px;
-  margin-top: 2px;
-  display: inline-block;
-  //   padding: 0.35em 0.35em;
-  //   border: 0.1em solid #ffffff;
-  border-radius: 0.12em;
-  box-sizing: border-box;
-  text-decoration: none;
-  font-weight: 300;
-  //   color: #ffffff;
-  text-align: center;
-  transition: all 0.2s;
-  //   border-radius: 45%;
-  cursor: pointer;
-  .fa-expand {
-    color: white;
-  }
+.card-expanded-bar-deaths,
+.card-expanded-deaths,
+.card-expanded-cases-deaths {
   .fa-stack:hover {
     color: map-get($map: $js-colors, $key: deaths);
     transition: all 0.2s;
   }
-}
-
-.card-expanded-deaths {
-  position: absolute;
-  z-index: 1;
-  margin-left: 2px;
-  margin-top: 2px;
-  display: inline-block;
-  //   padding: 0.35em 0.35em;
-  //   border: 0.1em solid #ffffff;
-  border-radius: 0.12em;
-  box-sizing: border-box;
-  text-decoration: none;
-  font-weight: 300;
-  //   color: #ffffff;
-  text-align: center;
-  transition: all 0.2s;
-  //   border-radius: 45%;
-  cursor: pointer;
-  .fa-expand {
-    color: white;
-  }
-  .fa-stack:hover {
-    color: map-get($map: $js-colors, $key: deaths);
-    transition: all 0.2s;
-  }
-}
-
-.custom-select-menu {
-  z-index: 9999 !important;
-  position: absolute !important;
-  // top: 25px !important;
-  padding-top: 10px;
-  right: 35px !important;
-  // width: 200px !important;
 }
 
 /* Modals */
 
 #casesLineModal,
 #casesBarModal {
-  .modal-header {
-    background-color: map-get($map: $theme-colors, $key: color2);
-    color: white;
-  }
-  .modal-footer {
-    background-color: map-get($map: $theme-colors, $key: color2);
-    color: white;
-  }
-
-  .modal-content {
-    border: 3px solid map-get($map: $theme-colors, $key: color3);
-    background-color: map-get($map: $theme-colors, $key: color3);
-  }
-
-  .close-modal {
-    background-color: map-get($map: $js-colors, $key: cases);
-    color: black;
-  }
-
-  .close-modal:hover {
-    border-color: black;
-  }
-}
-
-#deathsLineModal,
-#deathsBarModal {
   .modal-header {
     background-color: map-get($map: $theme-colors, $key: color3);
     color: white;
@@ -681,6 +500,33 @@ table-area {
   .close-modal {
     background-color: map-get($map: $js-colors, $key: deaths);
     color: white;
+  }
+
+  .close-modal:hover {
+    border-color: white;
+  }
+}
+
+#deathsLineModal,
+#deathsBarModal,
+#casesdeathsBarModal {
+  .modal-header {
+    background-color: map-get($map: $theme-colors, $key: color2);
+    color: white;
+  }
+  .modal-footer {
+    background-color: map-get($map: $theme-colors, $key: color2);
+    color: white;
+  }
+
+  .modal-content {
+    border: 3px solid map-get($map: $theme-colors, $key: color3);
+    background-color: map-get($map: $theme-colors, $key: color3);
+  }
+
+  .close-modal {
+    background-color: map-get($map: $js-colors, $key: cases);
+    color: black;
   }
 
   .close-modal:hover {
@@ -737,12 +583,8 @@ table-area {
 .modal-content {
   background-color: #fefefe;
   margin: 5% auto;
-  /* 15% from the top and centered */
   width: 80%;
-  /* Could be more or less, depending on screen size */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  // animation-name: animatetop;
-  // animation-duration: 0.4s;
   border-radius: 0.25em;
 }
 
@@ -810,153 +652,11 @@ table-area {
   transition: all 0.2s;
 }
 
-
 @media all and (max-width: 30em) {
   .close-modal {
     display: block;
     margin: 0.2em auto;
   }
-}
-
-/* Custom SCSS Variables */
-
-$primary: #611f6a;
-$light: #ebeaeb;
-$warning: #ecb22f;
-// $danger: rgb(241, 39, 17);
-// $theme-colors: ( 'cases': #0074d9, );
-$sizes: (
-  25: 25%,
-  30: 30%,
-  50: 50%,
-  70: 70%,
-  75: 75%,
-  100: 100%,
-);
-// $navbar-light-brand-color: #EBEAEB;
-// @import "../node_modules/bootstrap/scss/bootstrap.scss";
-// html,
-// body {
-//     font-family: 'Open Sans', sans-serif;
-//     height: 100%;
-//     width: 100%;
-// }
-.container-dashboard {
-  height: calc(100% - 56px);
-  // position: absolute;
-}
-
-.row-a {
-  padding: 16px;
-}
-
-.row-b {
-  padding: 0px 16px 16px 16px;
-}
-
-.group-a {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  margin-left: 0px;
-  margin-right: 8px;
-}
-
-.group-b {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  margin-right: 8px;
-  margin-left: 8px;
-}
-
-.group-c {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  margin-left: 8px;
-}
-
-@media only screen and (max-width: 768px) {
-  .row-a {
-    height: 100% !important;
-  }
-  .row-b {
-    height: 150% !important;
-  }
-  .group-a {
-    height: 400px;
-    margin-right: 0px;
-    // margin-bottom: 8px;
-  }
-  .group-a-mobile {
-    margin-bottom: 8px;
-  }
-  .group-b {
-    margin-right: 0px;
-    margin-left: 0px;
-  }
-  .group-b-mobile {
-    margin-top: 8px;
-    margin-bottom: 8px;
-  }
-  .group-c {
-    margin-left: 0px;
-    margin-right: 0px;
-  }
-  .group-c-mobile {
-    margin-top: 8px;
-  }
-}
-
-/* Backgrounds */
-
-.cases {
-  background-image: linear-gradient(
-    135deg,
-    rgb(245, 175, 25) 10%,
-    rgb(241, 39, 17) 100%
-  );
-}
-
-.btn-cases-expand {
-  background-color: rgb(241, 39, 17);
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 1;
-}
-
-.deaths {
-  background-image: linear-gradient(
-    135deg,
-    rgb(227, 26, 28) 10%,
-    rgb(128, 0, 38) 100%
-  );
-}
-
-.btn-deaths-expand {
-  background-color: rgb(241, 39, 17);
-  position: absolute;
-  top: 10px;
-  left: 25px;
-  z-index: 1;
-}
-
-.map {
-  background-image: linear-gradient(
-    135deg,
-    rgb(45, 84, 94) 10%,
-    rgb(18, 52, 59) 100%
-  );
-}
-
-/* Modals */
-
-// .modal-body {
-//     position: relative;
-//     height: 600px !important;
-// }
-
-.btn-cases-expand:hover {
-  background-color: #fd833e;
 }
 
 .shadow-custom {
@@ -965,38 +665,6 @@ $sizes: (
   box-shadow: 6px 7px 23px -4px rgba(0, 0, 0, 0.75);
 }
 
-/* Ripple */
-
-/*Create ripple effec*/
-
-.ripple {
-  position: relative;
-  overflow: hidden;
-  transform: translate3d(0, 0, 0);
-}
-
-.ripple:after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
-  background-repeat: no-repeat;
-  background-position: 50%;
-  transform: scale(10, 10);
-  opacity: 0;
-  transition: transform 0.5s, opacity 1s;
-}
-
-.ripple:active:after {
-  transform: scale(0, 0);
-  opacity: 0.3;
-  transition: 0s;
-}
 
 /* Leaflet */
 
@@ -1036,13 +704,14 @@ $sizes: (
   background-color: map-get($map: $theme-colors, $key: color2a);
   padding: 20px;
   border-radius: 0.25em;
-  line-height: 40px;
+  line-height: 35px;
 
   h3 {
     margin: 0px;
   }
 
   .slider-info {
+    margin-top: 10px;
     padding-bottom: 10px;
   }
 
@@ -1054,13 +723,13 @@ $sizes: (
 .noUi-handle {
   border: 0px !important;
   border-radius: 0.25em !important;
-  background: map-get($map: $theme-colors, $key: color3) !important;
+  background: map-get($map: $theme-colors, $key: color1) !important;
   cursor: move !important;
   box-shadow: none !important;
 }
 
 .noUi-connect {
-  background: map-get($map: $theme-colors, $key: color2) !important;
+  background: map-get($map: $js-colors, $key: cases) !important;
 }
 
 .noUi-target {
@@ -1077,32 +746,6 @@ $sizes: (
   position: absolute !important;
   top: 25px !important;
   right: 25px !important;
-}
-
-/* Legend */
-
-.legend {
-  z-index: 9999 !important;
-  position: absolute !important;
-  // line-height: 0px;
-  height: auto;
-  width: auto;
-  border-radius: 0.25em;
-  padding: 10px;
-  margin: 10px;
-  color: white;
-  background-color: map-get($map: $theme-colors, $key: color2a);
-  right: 0;
-  border-radius: 1px solid black;
-
-  ul {
-    padding: 0;
-  }
-
-  li {
-    width: 100%;
-    clear: left;
-  }
 }
 
 .square {
@@ -1276,59 +919,14 @@ $sizes: (
   right: 0;
 }
 
-// .cases-square1 {
-//     background-color: map-get($map: $cases-colors, $key: color1);
-// }
-
-.cases-square1 {
-  background-color: map-get($map: $cases-colors, $key: color1);
-}
-
-.cases-square2 {
-  background-color: map-get($map: $cases-colors, $key: color2);
-}
-
-.cases-square3 {
-  background-color: map-get($map: $cases-colors, $key: color3);
-}
-
-.cases-square4 {
-  background-color: map-get($map: $cases-colors, $key: color4);
-}
-
-.cases-square5 {
-  background-color: map-get($map: $cases-colors, $key: color5);
-}
-
-.cases-square6 {
-  background-color: map-get($map: $cases-colors, $key: color6);
-}
-
-.cases-square7 {
-  background-color: map-get($map: $cases-colors, $key: color7);
-}
-
-.cases-square8 {
-  background-color: map-get($map: $cases-colors, $key: color8);
-}
-
-.cases-square9 {
-  background-color: map-get($map: $cases-colors, $key: color9);
-}
-
-.legend-item {
-  display: flex;
-  justify-content: flex-start;
-  /* align horizontal */
-  align-items: center;
-  text-decoration: none;
-}
+/* Tool Tips */
 
 .cases-1-tool-tips {
   background: map-get($map: $cases-colors, $key: color1);
   color: black;
   border: 1px solid map-get($map: $cases-colors, $key: color1);
   font-family: "Open Sans", sans-serif;
+  font-weight: bold;
   opacity: 0.85;
 }
 
@@ -1345,6 +943,7 @@ $sizes: (
   color: black;
   border: 1px solid map-get($map: $cases-colors, $key: color2);
   font-family: "Open Sans", sans-serif;
+  font-weight: bold;
   opacity: 0.85;
 }
 
@@ -1361,6 +960,7 @@ $sizes: (
   color: black;
   border: 1px solid map-get($map: $cases-colors, $key: color3);
   font-family: "Open Sans", sans-serif;
+  font-weight: bold;
   opacity: 0.85;
 }
 
@@ -1374,9 +974,10 @@ $sizes: (
 
 .cases-4-tool-tips {
   background: map-get($map: $cases-colors, $key: color4);
-  color: white;
+  color: black;
   border: 1px solid map-get($map: $cases-colors, $key: color4);
   font-family: "Open Sans", sans-serif;
+  font-weight: bold;
   opacity: 0.85;
 }
 
@@ -1393,6 +994,7 @@ $sizes: (
   color: white;
   border: 1px solid map-get($map: $cases-colors, $key: color5);
   font-family: "Open Sans", sans-serif;
+  font-weight: bold;
   opacity: 0.85;
 }
 
@@ -1409,6 +1011,7 @@ $sizes: (
   color: white;
   border: 1px solid map-get($map: $cases-colors, $key: color6);
   font-family: "Open Sans", sans-serif;
+  font-weight: bold;
   opacity: 0.85;
 }
 
@@ -1425,6 +1028,7 @@ $sizes: (
   color: white;
   border: 1px solid map-get($map: $cases-colors, $key: color7);
   font-family: "Open Sans", sans-serif;
+  font-weight: bold;
   opacity: 0.85;
 }
 
@@ -1441,6 +1045,7 @@ $sizes: (
   color: white;
   border: 1px solid map-get($map: $cases-colors, $key: color8);
   font-family: "Open Sans", sans-serif;
+  font-weight: bold;
   opacity: 0.85;
 }
 
@@ -1457,6 +1062,7 @@ $sizes: (
   color: white;
   border: 1px solid map-get($map: $cases-colors, $key: color9);
   font-family: "Open Sans", sans-serif;
+  font-weight: bold;
   opacity: 0.85;
 }
 
@@ -1468,74 +1074,157 @@ $sizes: (
   border-right-color: map-get($map: $cases-colors, $key: color9);
 }
 
-$deaths-colors: (
-  1: #fee5d9,
-  2: #fcae91,
-  3: #fb6a4a,
-  4: #e91e63,
-);
 .deaths-1-tool-tips {
-  background: map-get($deaths-colors, 1);
+  background: map-get($map: $deaths-colors, $key: color1);
   color: black;
-  border: 1px solid map-get($deaths-colors, 1);
+  border: 1px solid map-get($map: $deaths-colors, $key: color1);
   font-family: "Open Sans", sans-serif;
+  font-weight: bold;
   opacity: 0.85;
 }
 
 .leaflet-tooltip-left.deaths-1-tool-tips:before {
-  border-left-color: map-get($deaths-colors, 1);
+  border-left-color: map-get($map: $deaths-colors, $key: color1);
 }
 
 .leaflet-tooltip-right.deaths-1-tool-tips::before {
-  border-right-color: map-get($deaths-colors, 1);
+  border-right-color: map-get($map: $deaths-colors, $key: color1);
 }
 
 .deaths-2-tool-tips {
-  background: map-get($deaths-colors, 2);
+  background: map-get($map: $deaths-colors, $key: color2);
   color: black;
-  border: 1px solid map-get($deaths-colors, 2);
+  border: 1px solid map-get($map: $deaths-colors, $key: color2);
   font-family: "Open Sans", sans-serif;
+  font-weight: bold;
   opacity: 0.85;
 }
 
 .leaflet-tooltip-left.deaths-2-tool-tips:before {
-  border-left-color: map-get($deaths-colors, 2);
+  border-left-color: map-get($map: $deaths-colors, $key: color2);
 }
 
 .leaflet-tooltip-right.deaths-2-tool-tips::before {
-  border-right-color: map-get($deaths-colors, 2);
+  border-right-color: map-get($map: $deaths-colors, $key: color2);
 }
 
 .deaths-3-tool-tips {
-  background: map-get($deaths-colors, 3);
+  background: map-get($map: $deaths-colors, $key: color3);
   color: black;
-  border: 1px solid map-get($deaths-colors, 3);
+  border: 1px solid map-get($map: $deaths-colors, $key: color3);
   font-family: "Open Sans", sans-serif;
+  font-weight: bold;
   opacity: 0.85;
 }
 
 .leaflet-tooltip-left.deaths-3-tool-tips:before {
-  border-left-color: map-get($deaths-colors, 3);
+  border-left-color: map-get($map: $deaths-colors, $key: color3);
 }
 
 .leaflet-tooltip-right.deaths-3-tool-tips::before {
-  border-right-color: map-get($deaths-colors, 3);
+  border-right-color: map-get($map: $deaths-colors, $key: color3);
 }
 
 .deaths-4-tool-tips {
-  background: map-get($deaths-colors, 4);
+  background: map-get($map: $deaths-colors, $key: color4);
   color: black;
-  border: 1px solid map-get($deaths-colors, 4);
+  border: 1px solid map-get($map: $deaths-colors, $key: color4);
   font-family: "Open Sans", sans-serif;
+  font-weight: bold;
   opacity: 0.85;
 }
 
 .leaflet-tooltip-left.deaths-4-tool-tips:before {
-  border-left-color: map-get($deaths-colors, 4);
+  border-left-color: map-get($map: $deaths-colors, $key: color4);
 }
 
 .leaflet-tooltip-right.deaths-4-tool-tips::before {
-  border-right-color: map-get($deaths-colors, 4);
+  border-right-color: map-get($map: $deaths-colors, $key: color4);
+}
+
+.deaths-5-tool-tips {
+  background: map-get($map: $deaths-colors, $key: color5);
+  color: white;
+  border: 1px solid map-get($map: $deaths-colors, $key: color5);
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  opacity: 0.85;
+}
+
+.leaflet-tooltip-left.deaths-5-tool-tips:before {
+  border-left-color: map-get($map: $deaths-colors, $key: color5);
+}
+
+.leaflet-tooltip-right.deaths-5-tool-tips::before {
+  border-right-color: map-get($map: $deaths-colors, $key: color5);
+}
+
+.deaths-6-tool-tips {
+  background: map-get($map: $deaths-colors, $key: color6);
+  color: white;
+  border: 1px solid map-get($map: $deaths-colors, $key: color6);
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  opacity: 0.85;
+}
+
+.leaflet-tooltip-left.deaths-6-tool-tips:before {
+  border-left-color: map-get($map: $deaths-colors, $key: color6);
+}
+
+.leaflet-tooltip-right.deaths-6-tool-tips::before {
+  border-right-color: map-get($map: $deaths-colors, $key: color6);
+}
+
+.deaths-7-tool-tips {
+  background: map-get($map: $deaths-colors, $key: color7);
+  color: white;
+  border: 1px solid map-get($map: $deaths-colors, $key: color7);
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  opacity: 0.85;
+}
+
+.leaflet-tooltip-left.deaths-7-tool-tips:before {
+  border-left-color: map-get($map: $deaths-colors, $key: color7);
+}
+
+.leaflet-tooltip-right.deaths-7-tool-tips::before {
+  border-right-color: map-get($map: $deaths-colors, $key: color7);
+}
+
+.deaths-8-tool-tips {
+  background: map-get($map: $deaths-colors, $key: color8);
+  color: white;
+  border: 1px solid map-get($map: $deaths-colors, $key: color8);
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  opacity: 0.85;
+}
+
+.leaflet-tooltip-left.deaths-8-tool-tips:before {
+  border-left-color: map-get($map: $deaths-colors, $key: color8);
+}
+
+.leaflet-tooltip-right.deaths-8-tool-tips::before {
+  border-right-color: map-get($map: $deaths-colors, $key: color8);
+}
+
+.deaths-9-tool-tips {
+  background: map-get($map: $deaths-colors, $key: color9);
+  color: white;
+  border: 1px solid map-get($map: $deaths-colors, $key: color9);
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  opacity: 0.85;
+}
+
+.leaflet-tooltip-left.deaths-9-tool-tips:before {
+  border-left-color: map-get($map: $deaths-colors, $key: color9);
+}
+
+.leaflet-tooltip-right.deaths-9-tool-tips::before {
+  border-right-color: map-get($map: $deaths-colors, $key: color9);
 }
 
 /* table formatting */
@@ -1587,7 +1276,7 @@ $deaths-colors: (
 
 .table thead th {
   color: #fff;
-  background-color: #999BAF;
+  background-color: #999baf;
   border-color: #454d55;
 }
 
@@ -1599,34 +1288,54 @@ $deaths-colors: (
   }
 }
 
-/* nano */
-
-// .nano { background: #bba; width: 500px; height: 500px; }
-.nano .nano-content {
-  padding: 10px;
-}
-
-.nano .nano-pane {
-  background: map-get($map: $theme-colors, $key: color2) !important;
-}
-
-.nano .nano-slider {
-  background: map-get($map: $theme-colors, $key: color3) !important;
-}
-
-$theme-colors: (
-  main: #611f6a,
-);
-
 /* Apex Charts */
-// #chart .apexcharts-theme-light .apexcharts-tooltip  {
-//     background: black !important;
-//     color: #fff !important;
-//   }
-//   #chart .apexcharts-tooltip  .apexcharts-tooltip-series-group .apexcharts-active{
-//     background: orange !important;
-//   }
-
 .apexcharts-canvas.apexcharts-zoomable .hovering-zoom {
   cursor: default !important;
+}
+
+// .apexcharts-toolbar {
+//   width: 30% !important;
+//   max-width: default !important;
+// }
+
+.apexcharts-zoom-icon,
+.apexcharts-zoomin-icon,
+.apexcharts-zoomout-icon,
+.apexcharts-reset-icon,
+.apexcharts-pan-icon,
+.apexcharts-selection-icon,
+.apexcharts-menu-icon,
+.apexcharts-toolbar-custom-icon {
+  height: auto !important;
+  width: auto !important;
+}
+
+.cases-download,
+.deaths-download,
+.casesdeaths-download {
+  color: white;
+}
+
+.cases-download:hover {
+  color: map-get($map: $js-colors, $key: cases);
+}
+
+.deaths-download:hover,
+.casesdeaths-download:hover {
+  color: map-get($map: $js-colors, $key: deaths);
+}
+
+.legend {
+  line-height: 24px;
+  color: white;
+  font-family: "Open Sans";
+  font-size: 16px;
+  background-color: map-get($map: $theme-colors, $key: color2a);
+  padding: 20px;
+}
+.legend i {
+  width: 24px;
+  height: 24px;
+  float: left;
+  margin-right: 8px;
 }
