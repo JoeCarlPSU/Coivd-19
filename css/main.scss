@@ -19,14 +19,14 @@ $js-colors: (
 
 $cases-colors: (
   color1: #ffffff,
-  color2: #75e8d8,
-  color3: #4ee1cd,
-  color4: #27dbc3,
-  color5: #20b4a0,
-  color6: #198c7d,
-  color7: #126459,
-  color8: #0b3c36,
-  color9: #082824,
+  color2: #9CEEE3,
+  color3: #75e8d8,
+  color4: #4ee1cd,
+  color5: #27dbc3,
+  color6: #20b4a0,
+  color7: #198c7d,
+  color8: #126459,
+  color9: #0F5047,
 );
 
 $deaths-colors: (
@@ -1109,3 +1109,32 @@ table-area {
   float: left;
   margin-right: 8px;
 }
+
+// .legend {
+//   color: white;
+//   padding: 6px 8px;
+//   font-size: 14px;
+//   font-family: 'Open Sans';
+//   font-weight: bold;
+//   background: white;
+//   background: map-get($map: $theme-colors, $key: color2a);
+//   border-radius: 0.25em;
+// }
+// .legend ul {
+//   list-style-type: none;
+//   padding: 0;
+//   margin: 0;
+//   clear: both;
+// }
+// .legend li {
+//   display: inline-block;
+//   width: 30px;
+//   height: 22px;
+// }
+// .legend .min {
+//   float: left;
+//   padding-bottom: 5px;
+// }
+// .legend .max {
+//   float: right;
+// }

@@ -12,7 +12,7 @@ let casesDeathsBarModalChart;
 let visualType = "Cases";
 let visualPieType = "Cases";
 let currentdate = "April 15, 2020";
-let casesMax = 7316;
+let casesMax = 7136;
 let deathsMax = 475;
 
 document.addEventListener("DOMContentLoaded", function(event) {
@@ -1686,26 +1686,26 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     let casesColors = {
         1: "#ffffff",
-        2: "#75E8D8",
-        3: "#4EE1CD",
-        4: "#27DBC3",
-        5: "#20B4A0",
-        6: "#198C7D",
-        7: "#126459",
-        8: "#0B3C36",
-        9: "#082824",
+        2: "#9CEEE3",
+        3: "#61E4D3",
+        4: "#4EE1CD",
+        5: "#27DBC3",
+        6: "#20B4A0",
+        7: "#198C7D",
+        8: "#126459",
+        9: "#0F5047",
     };
 
     let deathsColors = {
         1: "white",
-        2: "#FFA496",
-        3: "#FF8A78",
-        4: "#FF715B",
-        5: "#D15D4B",
-        6: "#A3483A",
-        7: "#74342A",
-        8: "#461F19",
-        9: "#2F1511"
+        2: "#FFBEB4",
+        3: "#FFA496",
+        4: "#FF8A78",
+        5: "#FF715B",
+        6: "#D15D4B",
+        7: "#A3483A",
+        8: "#74342A",
+        9: "#5D2A22",
     };
 
     let casesToolTips = {
@@ -1733,69 +1733,69 @@ document.addEventListener("DOMContentLoaded", function(event) {
     };
 
     let dailyCasesNumbers = {
-        1: 0,
-        2: 1,
-        3: 12,
-        4: 30,
-        5: 56,
-        6: 81,
-        7: 125,
-        8: 354,
-        9: 1084,
+        1: 1,
+        2: 12,
+        3: 30,
+        4: 56,
+        5: 81,
+        6: 125,
+        7: 354,
+        8: 1084,
+        9: 7136,
     };
 
 
     let dailyDeathsNumbers = {
-        1: 0,
-        2: 1,
-        3: 4,
-        4: 6,
-        5: 9,
-        6: 11,
-        7: 25,
-        8: 90,
-        9: 410
+        1: 1,
+        2: 4,
+        3: 6,
+        4: 9,
+        5: 11,
+        6: 25,
+        7: 90,
+        8: 410,
+        9: 475
     }
 
     //Function for styline the geoJSON files
     let casesGetColor = (cases) => {
-        return cases > dailyCasesNumbers[9] ?
-            casesColors[9] :
-            cases > dailyCasesNumbers[8] ?
-            casesColors[8] :
-            cases > dailyCasesNumbers[7] ?
-            casesColors[7] :
-            cases > dailyCasesNumbers[6] ?
-            casesColors[6] :
-            cases > dailyCasesNumbers[5] ?
-            casesColors[5] :
-            cases > dailyCasesNumbers[4] ?
-            casesColors[4] :
-            cases > dailyCasesNumbers[3] ?
-            casesColors[3] :
-            cases >= dailyCasesNumbers[2] ?
+        return cases < dailyCasesNumbers[1] ?
+            casesColors[1] :
+            cases <= dailyCasesNumbers[2] ?
             casesColors[2] :
-            casesColors[1];
+            cases <= dailyCasesNumbers[3] ?
+            casesColors[3] :
+            cases <= dailyCasesNumbers[4] ?
+            casesColors[4] :
+            cases <= dailyCasesNumbers[5] ?
+            casesColors[5] :
+            cases <= dailyCasesNumbers[6] ?
+            casesColors[6] :
+            cases <= dailyCasesNumbers[7] ?
+            casesColors[7] :
+            cases <= dailyCasesNumbers[8] ?
+            casesColors[8] :
+            casesColors[9];
     };
 
     let deathsGetColor = (deaths) => {
-        return deaths > dailyDeathsNumbers[9] ?
-            deathsColors[9] :
-            deaths > dailyDeathsNumbers[8] ?
-            deathsColors[8] :
-            deaths > dailyDeathsNumbers[7] ?
-            deathsColors[7] :
-            deaths > dailyDeathsNumbers[6] ?
-            deathsColors[6] :
-            deaths > dailyDeathsNumbers[5] ?
-            deathsColors[5] :
-            deaths > dailyDeathsNumbers[4] ?
-            deathsColors[4] :
-            deaths > dailyDeathsNumbers[3] ?
-            deathsColors[3] :
-            deaths >= dailyDeathsNumbers[2] ?
+        return deaths <= dailyDeathsNumbers[1] ?
+            deathsColors[1] :
+            deaths <= dailyDeathsNumbers[2] ?
             deathsColors[2] :
-            deathsColors[1];
+            deaths <= dailyDeathsNumbers[3] ?
+            deathsColors[3] :
+            deaths <= dailyDeathsNumbers[4] ?
+            deathsColors[4] :
+            deaths <= dailyDeathsNumbers[5] ?
+            deathsColors[5] :
+            deaths <= dailyDeathsNumbers[6] ?
+            deathsColors[6] :
+            deaths <= dailyDeathsNumbers[7] ?
+            deathsColors[7] :
+            deaths <= dailyDeathsNumbers[8] ?
+            deathsColors[8] :
+            deathsColors[9];
     };
 
     let casesClass = (layer) => {
@@ -1843,9 +1843,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     let casesStyle = (feature) => {
         return {
             fillColor: casesGetColor(feature.properties.cases),
-            weight: 1,
+            weight: 1.5,
             opacity: 1,
-            color: "black",
+            color: 'black',
             dashArray: "0",
             fillOpacity: 1,
         };
@@ -1854,9 +1854,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     let deathsStyle = (feature) => {
         return {
             fillColor: deathsGetColor(feature.properties.deaths),
-            weight: 1,
+            weight: 1.5,
             opacity: 1,
-            color: "black",
+            color: 'black',
             dashArray: "0",
             fillOpacity: 1,
         };
@@ -2088,15 +2088,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         labels = [];
 
-        // loop through our density intervals and generate a label with a colored square for each interval
         for (var i = 0; i < grades.length; i++) {
-            if (grades[i] != 0) {
+            if (grades[i] <= 1){
                 div.innerHTML +=
-                    '<i style="background:' + casesGetColor(grades[i]) + '"></i> ' +
-                    grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '-' + casesMax);
+                '<i style="border-top: 2px solid black; border-right: 2px solid black; border-left: 2px solid black; background:white"></i>' + 0 + '<br>'; 
+            } else if (grades[i] != casesMax){
+                div.innerHTML +=
+                '<i style="border-left: 2px solid black; border-right: 2px solid black; background:' + casesGetColor(grades[i]) + '"></i><br>';
             } else {
                 div.innerHTML +=
-                    '<i style="background:' + casesGetColor(grades[i]) + '"></i> 0 <br>';
+                '<i style="border-bottom: 2px solid black; border-right: 2px solid black; border-left: 2px solid black; background:' + casesGetColor(grades[i]) + '"></i>' + casesMax + '<br>';
             }
         }
 
@@ -2120,13 +2121,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         // loop through our density intervals and generate a label with a colored square for each interval
         for (var i = 0; i < grades.length; i++) {
-            if (grades[i] != 0) {
+            if (grades[i] <= 1){
                 div.innerHTML +=
-                    '<i style="background:' + deathsGetColor(grades[i]) + '"></i> ' +
-                    grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '-' + deathsMax);
+                '<i style="border-top: 2px solid black; border-right: 2px solid black; border-left: 2px solid black; background:white"></i>' + 0 + '<br>'; 
+            } else if (grades[i] != deathsMax){
+                div.innerHTML +=
+                '<i style="border-left: 2px solid black; border-right: 2px solid black; background:' + deathsGetColor(grades[i]) + '"></i><br>';
             } else {
                 div.innerHTML +=
-                    '<i style="background:' + deathsGetColor(grades[i]) + '"></i> 0 <br>';
+                '<i style="border-bottom: 2px solid black; border-right: 2px solid black; border-left: 2px solid black; background:' + deathsGetColor(grades[i]) + '"></i>' + deathsMax + '&nbsp;&nbsp;' + '<br>';
             }
         }
 
