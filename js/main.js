@@ -1672,10 +1672,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
     //Leaflet & slider
-    mymap = L.map("mapid", { zoomSnap: 0.05 }).setView(
-        [44.3148, -85.6024],
-        13.25
-    );
+    mymap = L.map("mapid", { zoomSnap: 0.05 })
 
     mymap.attributionControl.addAttribution('<a href="https://apexcharts.com/">Apex Charts</a>');
 
@@ -1955,6 +1952,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
         // geojsonLayer.addTo(mymap);
         mymap.fitBounds(geojsonLayer.getBounds());
+
+        mymap.options.minZoom = mymap.getZoom()
     };
 
     //add the initial current data on map load
