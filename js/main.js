@@ -1681,7 +1681,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     L.easyButton("fa-home", function() {
         mymap.fitBounds(geojsonLayer.getBounds());
-    }).addTo(mymap);
+    },'Home Extent').addTo(mymap);
 
 
     let casesColors = {

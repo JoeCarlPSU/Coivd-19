@@ -37,7 +37,7 @@
         <div class="header-title">Michigan Covid-19 Status</div>
 
         <div class="logout">
-            <a class="nav-item" href="https://www.linkedin.com/in/joe-carl-55116351/">
+            <a class="nav-item" href="https://www.linkedin.com/in/joe-carl-55116351/" title="Linkedin Profile">
                 <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fab fa-linkedin-in fa-stack-1x fa-inverse"></i>
@@ -46,7 +46,7 @@
         </div>
     </header>
     <chart class="border-rounded shadow-custom">
-        <a class="card-expanded-bar-cases">
+        <a class="card-expanded-bar-cases" title="Chart Details">
             <span class="fa-stack fa-lg" id="casesBarModalBtn">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-expand fa-stack-1x fa-inverse"></i>
@@ -56,7 +56,7 @@
         </div>
     </chart>
     <chart class="border-rounded shadow-custom">
-        <a class="card-expanded-bar-deaths">
+        <a class="card-expanded-bar-deaths" title="Chart Details">
             <span class="fa-stack fa-lg" id="deathsBarModalBtn">
     <i class="fa fa-circle fa-stack-2x"></i>
     <i class="fa fa-expand fa-stack-1x fa-inverse"></i>
@@ -66,7 +66,7 @@
         </div>
     </chart>
     <chart class="border-rounded shadow-custom">
-        <a class="card-expanded-cases">
+        <a class="card-expanded-cases" title="Chart Details">
             <span class="fa-stack fa-lg" id="casesLineModalBtn">
             <i class="fa fa-circle fa-stack-2x"></i>
             <i class="fa fa-expand fa-stack-1x fa-inverse"></i>
@@ -76,7 +76,7 @@
         </div>
     </chart>
     <chart class="border-rounded shadow-custom">
-        <a class="card-expanded-deaths">
+        <a class="card-expanded-deaths" title="Chart Details">
             <span class="fa-stack fa-lg" id="deathsLineModalBtn">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-expand fa-stack-1x fa-inverse"></i>
@@ -85,7 +85,7 @@
         <div id="deathsDailyLineChart">
         </div>
     </chart>
-    <chart class="border-rounded shadow-custom">
+    <chart class="border-rounded shadow-custom" title="Chart Details">
         <a class="card-expanded-cases-deaths">
             <span class="fa-stack fa-lg" id="casesdeathsBarModalBtn">
     <i class="fa fa-circle fa-stack-2x"></i>
@@ -96,7 +96,7 @@
         </div>
     </chart>
     <chart class="border-rounded shadow-custom" id="pieChartContainer">
-        <div class="flip-pie flipswitch-pie">
+        <div class="flip-pie flipswitch-pie" title="Switch Deaths/Cases">
             <input type="checkbox" checked="" id="fs-pie" class="flipswitch-pie-cb" name="flipswitch">
             <label for="fs-pie" class="flipswitch-pie-label">
               <div class="flipswitch-pie-inner"></div>
@@ -111,7 +111,7 @@
         <div class="cases-info">
             <h3>Data Viewer</h3>
             <!-- Rounded switch -->
-            <div class="flipswitch">
+            <div class="flipswitch" title="Switch Deaths/Cases">
                 <input type="checkbox" checked="" id="fs" class="flipswitch-cb" name="flipswitch">
                 <label for="fs" class="flipswitch-label">
                     <div class="flipswitch-inner"></div>
@@ -123,7 +123,7 @@
             <h3>Date Slider</h3>
             <span class="data-date">Date: </span></br>
         </div>
-        <div id="slider-range"></div>
+        <div id="slider-range" title="Date Slider"></div>
     </div>
         <div id="mapid"></div>
     </map>
@@ -132,9 +132,9 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th class="County-cell"> County <i class="fas fa-sort county-sort-asc"></i></th>
-                        <th class="Cases-cell table-selected">Cases <i class="fas fa-sort cases-sort2"></i></th>
-                        <th class="Reported Deaths-cell">Deaths <i class="fas fa-sort deaths-sort"></i> </th>
+                        <th class="County-cell"> County <i class="fas fa-sort county-sort-asc" title="Sort data"></i></th>
+                        <th class="Cases-cell table-selected">Cases <i class="fas fa-sort cases-sort2" title="Sort data"></i></th>
+                        <th class="Reported Deaths-cell">Deaths <i class="fas fa-sort deaths-sort" title="Sort data"></i> </th>
                     </tr>
                 </thead>
                 <tbody>
