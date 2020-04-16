@@ -2,20 +2,20 @@
 
 let mymap;
 let casesLegend;
-let deathsLegend
+let deathsLegend;
 let geojsonLayer;
-let casesBarModalChart
-let deathsBarModalChart
-let casesLineModalChart
-let deathsLineModalChart
-let casesDeathsBarModalChart
+let casesBarModalChart;
+let deathsBarModalChart;
+let casesLineModalChart;
+let deathsLineModalChart;
+let casesDeathsBarModalChart;
 let visualType = "Cases";
-let visualPieType = "Cases"
+let visualPieType = "Cases";
 let currentdate = "April 15, 2020";
-let casesMax = 7316
-let deathsMax = 475
+let casesMax = 7316;
+let deathsMax = 475;
 
-document.addEventListener("DOMContentLoaded", function(event) { 
+document.addEventListener("DOMContentLoaded", function(event) {
 
 
     themeColors = {
@@ -28,9 +28,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         color2a: 'rgba(74, 25, 66, 0.5)',
         color3a: 'rgba(44, 44, 84, 0.5)',
     }
-
-
-
 
     casesAlternate = {
         cases1: '#E91E63'
@@ -1277,7 +1274,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 show: true,
                 width: 1,
                 position: 'back',
-                opacity: 0.9,        
+                opacity: 0.9,
                 stroke: {
                     color: '#b6b6b6',
                     width: 0,
@@ -1739,7 +1736,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         1: 0,
         2: 1,
         3: 12,
-        4: 30,  
+        4: 30,
         5: 56,
         6: 81,
         7: 125,
@@ -1747,7 +1744,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         9: 1084,
     };
 
-    
+
     let dailyDeathsNumbers = {
         1: 0,
         2: 1,
@@ -1758,7 +1755,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         7: 25,
         8: 90,
         9: 410
-       }
+    }
 
     //Function for styline the geoJSON files
     let casesGetColor = (cases) => {
@@ -2119,7 +2116,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         var grades = Object.keys(dailyDeathsNumbers).map(function(key) {
             return dailyDeathsNumbers[key];
         });
-            labels = [];
+        labels = [];
 
         // loop through our density intervals and generate a label with a colored square for each interval
         for (var i = 0; i < grades.length; i++) {
