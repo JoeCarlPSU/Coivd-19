@@ -11,9 +11,9 @@ let deathsLineModalChart
 let casesDeathsBarModalChart
 let visualType = "Cases";
 let visualPieType = "Cases"
-let currentdate = "April 14, 2020";
-let casesMax = 7004
-let deathsMax = 427
+let currentdate = "April 15, 2020";
+let casesMax = 7316
+let deathsMax = 475
 
 document.addEventListener("DOMContentLoaded", function(event) { 
 
@@ -24,7 +24,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         female: '#A8F9FF',
         male: '#E06292',
         deaths_css: 'rgba(74, 25, 66, 1)',
-        cases_css: 'rgba(44, 44, 84, 1)'
+        cases_css: 'rgba(44, 44, 84, 1)',
+        color2a: 'rgba(74, 25, 66, 0.5)',
+        color3a: 'rgba(44, 44, 84, 0.5)',
     }
 
 
@@ -1736,26 +1738,26 @@ document.addEventListener("DOMContentLoaded", function(event) {
     let dailyCasesNumbers = {
         1: 0,
         2: 1,
-        3: 11,
-        4: 18,  
-        5: 35,
-        6: 68,
-        7: 118,
-        8: 326,
-        9: 1031,
+        3: 12,
+        4: 30,  
+        5: 56,
+        6: 81,
+        7: 125,
+        8: 354,
+        9: 1084,
     };
 
     
     let dailyDeathsNumbers = {
         1: 0,
         2: 1,
-        3: 3,
+        3: 4,
         4: 6,
-        5: 8,
-        6: 10,
-        7: 22,
-        8: 87,
-        9: 294
+        5: 9,
+        6: 11,
+        7: 25,
+        8: 90,
+        9: 410
        }
 
     //Function for styline the geoJSON files
@@ -1959,10 +1961,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     };
 
     //add the initial current data on map load
-    addToMap(aprilFourteen);
+    addToMap(aprilFifteen);
 
     let addGeoJSONLayer = (date) => {
         switch (date) {
+            case "4/15/2020":
+                addToMap(aprilFifteen)
+                break;
             case "4/14/2020":
                 addToMap(aprilFourteen);
                 break;
@@ -2078,6 +2083,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         var div = L.DomUtil.create('div', 'info legend');
 
+        div.style.backgroundColor = themeColors.color2a
+
         var grades = Object.keys(dailyCasesNumbers).map(function(key) {
             return dailyCasesNumbers[key];
         });
@@ -2106,6 +2113,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     deathsLegend.onAdd = function(map) {
 
         var div = L.DomUtil.create('div', 'info legend');
+
+        div.style.backgroundColor = themeColors.color3a
 
         var grades = Object.keys(dailyDeathsNumbers).map(function(key) {
             return dailyDeathsNumbers[key];
@@ -2156,6 +2165,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     const checkbox = document.getElementById("fs");
     const uiHandle = document.querySelector(".noUi-connect")
+    const sliderContainer = document.querySelector(".slider")
 
 
 
@@ -2170,6 +2180,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             uiHandle.style.setProperty('background', themeColors.cases, 'important');
             deathsLegend.remove()
             casesLegend.addTo(mymap);
+            sliderContainer.style.setProperty('background', themeColors.color2a, 'important');
 
         } else {
             let mapTag = document.getElementsByTagName("map")[0]
@@ -2178,6 +2189,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             uiHandle.style.setProperty('background', themeColors.deaths, 'important');
             casesLegend.remove()
             deathsLegend.addTo(mymap);
+            sliderContainer.style.setProperty('background', themeColors.color3a, 'important');
         }
         geojsonLayer.remove();
         addGeoJSONLayer(newdate);

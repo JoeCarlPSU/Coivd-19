@@ -53,6 +53,13 @@
 
 /* Portrait and Landscape */
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+
+  
+     .flip-pie {
+       bottom: 0;
+       right: 0;
+     }
+
     .card-expanded-cases,
     .card-expanded-bar-cases,
     .card-expanded-bar-deaths,
@@ -153,7 +160,13 @@
   footer .logout {
       display: none
   }
+
+
+  .modal-body {
+    height: 500px;
+  }
 }
+
 
 @media only screen 
   and (min-device-width: 375px) 
@@ -306,6 +319,10 @@
   and (max-device-width: 1366px)
   and (-webkit-min-device-pixel-ratio: 2) {
 
+    .modal-content {
+      width: 80%;
+    }
+
 }
 
 /* Portrait */
@@ -337,4 +354,11 @@
         grid-template-rows: 8% 90% 90% 90% 90% 90% 90% 80% 4%;
         grid-template-areas: "header" "chart1" "chart2" "chart3" "chart4" "chart5" "chart6" "map" "footer";
       }
+}
+
+@media all and (max-width: 30em) {
+  .close-modal {
+    display: block;
+    margin: 0.2em auto;
+  }
 }

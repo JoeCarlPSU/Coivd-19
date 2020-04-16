@@ -8,7 +8,8 @@ $theme-colors: (
   color3: rgba(44, 44, 84, 1),
   color4: rgba(68, 13, 15, 1),
   color5: #899eaf,
-  color2a: rgba(91, 74, 90, 0.5),
+  color2a: rgba(74, 25, 66, 0.5),
+  color3a: rgba(44, 44, 84, 0.5),
 );
 
 $js-colors: (
@@ -588,55 +589,6 @@ table-area {
   border-radius: 0.25em;
 }
 
-/* iphone 6, 7, 8 */
-
-@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (-webkit-device-pixel-ratio: 2) {
-  .modal-body {
-    height: 400px;
-  }
-}
-
-/* iphone 6+, 6s+, 7+, 8+ */
-
-@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (-webkit-device-pixel-ratio: 3) {
-}
-
-/* iphone X , XS, 11 Pro */
-
-@media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
-  .modal-body {
-    height: 500px;
-  }
-}
-
-/* iphone XR, 11 */
-
-@media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
-}
-
-/* iphone XS Max, 11 Pro Max */
-
-@media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (-webkit-device-pixel-ratio: 3) {
-}
-
-/* Ipdad pro */
-@media only screen and (max-width: 1366px) {
-  .modal-content {
-    width: 80%;
-  }
-}
-
-@keyframes animatetop {
-  from {
-    top: -300px;
-    opacity: 0;
-  }
-  to {
-    top: 0;
-    opacity: 1;
-  }
-}
-
 .close-modal {
   display: inline-block;
   padding: 0.3em 1.2em;
@@ -652,12 +604,6 @@ table-area {
   transition: all 0.2s;
 }
 
-@media all and (max-width: 30em) {
-  .close-modal {
-    display: block;
-    margin: 0.2em auto;
-  }
-}
 
 .shadow-custom {
   -webkit-box-shadow: 6px 7px 23px -4px rgba(0, 0, 0, 0.75);
@@ -676,20 +622,6 @@ table-area {
   background-color: rgba(255, 0, 0, 0);
 }
 
-.toolTips {
-  background: black;
-  color: white;
-  border: 1px solid black;
-  font-family: "Open Sans", sans-serif;
-}
-
-.leaflet-tooltip-left.toolTips::before {
-  border-left-color: black;
-}
-
-.leaflet-tooltip-right.toolTips::before {
-  border-right-color: black;
-}
 
 /* Slider */
 
@@ -739,22 +671,6 @@ table-area {
   box-shadow: none !important;
 }
 
-/* Selector */
-
-.cases-selector {
-  z-index: 9999 !important;
-  position: absolute !important;
-  top: 25px !important;
-  right: 25px !important;
-}
-
-.square {
-  height: 15px;
-  width: 15px;
-  display: inline-block;
-  margin-right: 2px;
-  border: 1px solid white;
-}
 
 /* Toggle */
 /* The switch - the box around the slider */
@@ -816,7 +732,6 @@ table-area {
   width: 28px;
   margin: -2px;
   background: map-get($map: $theme-colors, $key: color1);
-  //   border: 0px solid #999999;
   border-radius: 4px;
   position: absolute;
   top: 0;
@@ -921,8 +836,15 @@ table-area {
 
 /* Tool Tips */
 
-.cases-1-tool-tips {
-  background: map-get($map: $cases-colors, $key: color1);
+.cases-1-tool-tips,
+.cases-2-tool-tips,
+.cases-3-tool-tips,
+.cases-4-tool-tips,
+.cases-5-tool-tips,
+.cases-6-tool-tips,
+.cases-7-tool-tips,
+.cases-8-tool-tips,
+.cases-9-tool-tips {
   color: black;
   border: 1px solid map-get($map: $cases-colors, $key: color1);
   font-family: "Open Sans", sans-serif;
@@ -930,152 +852,82 @@ table-area {
   opacity: 0.85;
 }
 
-.leaflet-tooltip-left.cases-1-tool-tips:before {
+
+.leaflet-tooltip-left.cases-1-tool-tips:before,
+.leaflet-tooltip-left.cases-2-tool-tips:before,
+.leaflet-tooltip-left.cases-3-tool-tips:before,
+.leaflet-tooltip-left.cases-4-tool-tips:before,
+.leaflet-tooltip-left.cases-5-tool-tips:before,
+.leaflet-tooltip-left.cases-6-tool-tips:before,
+.leaflet-tooltip-left.cases-7-tool-tips:before,
+.leaflet-tooltip-left.cases-8-tool-tips:before,
+.leaflet-tooltip-left.cases-9-tool-tips:before {
   border-left-color: map-get($map: $cases-colors, $key: color1);
 }
 
-.leaflet-tooltip-right.cases-1-tool-tips::before {
+.leaflet-tooltip-right.cases-1-tool-tips::before,
+.leaflet-tooltip-right.cases-2-tool-tips:before,
+.leaflet-tooltip-right.cases-3-tool-tips::before,
+.leaflet-tooltip-right.cases-4-tool-tips:before,
+.leaflet-tooltip-right.cases-5-tool-tips:before,
+.leaflet-tooltip-right.cases-6-tool-tips::before,
+.leaflet-tooltip-right.cases-7-tool-tips:before,
+.leaflet-tooltip-right.cases-8-tool-tips::before,
+.leaflet-tooltip-right.cases-9-tool-tips:before {
   border-right-color: map-get($map: $cases-colors, $key: color1);
 }
 
+.cases-1-tool-tips {
+  background: map-get($map: $cases-colors, $key: color1);
+  
+}
 .cases-2-tool-tips {
   background: map-get($map: $cases-colors, $key: color2);
-  color: black;
-  border: 1px solid map-get($map: $cases-colors, $key: color2);
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
-  opacity: 0.85;
-}
 
-.leaflet-tooltip-left.cases-2-tool-tips:before {
-  border-left-color: map-get($map: $cases-colors, $key: color2);
 }
-
-.leaflet-tooltip-right.cases-2-tool-tips::before {
-  border-right-color: map-get($map: $cases-colors, $key: color2);
-}
-
 .cases-3-tool-tips {
   background: map-get($map: $cases-colors, $key: color3);
-  color: black;
-  border: 1px solid map-get($map: $cases-colors, $key: color3);
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
-  opacity: 0.85;
-}
 
-.leaflet-tooltip-left.cases-3-tool-tips:before {
-  border-left-color: map-get($map: $cases-colors, $key: color3);
-}
-
-.leaflet-tooltip-right.cases-3-tool-tips::before {
-  border-right-color: map-get($map: $cases-colors, $key: color3);
 }
 
 .cases-4-tool-tips {
   background: map-get($map: $cases-colors, $key: color4);
-  color: black;
-  border: 1px solid map-get($map: $cases-colors, $key: color4);
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
-  opacity: 0.85;
-}
 
-.leaflet-tooltip-left.cases-4-tool-tips:before {
-  border-left-color: map-get($map: $cases-colors, $key: color4);
-}
-
-.leaflet-tooltip-right.cases-4-tool-tips::before {
-  border-right-color: map-get($map: $cases-colors, $key: color4);
 }
 
 .cases-5-tool-tips {
   background: map-get($map: $cases-colors, $key: color5);
   color: white;
-  border: 1px solid map-get($map: $cases-colors, $key: color5);
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
-  opacity: 0.85;
 }
-
-.leaflet-tooltip-left.cases-5-tool-tips:before {
-  border-left-color: map-get($map: $cases-colors, $key: color5);
-}
-
-.leaflet-tooltip-right.cases-5-tool-tips::before {
-  border-right-color: map-get($map: $cases-colors, $key: color5);
-}
-
 .cases-6-tool-tips {
   background: map-get($map: $cases-colors, $key: color6);
   color: white;
-  border: 1px solid map-get($map: $cases-colors, $key: color6);
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
-  opacity: 0.85;
-}
-
-.leaflet-tooltip-left.cases-6-tool-tips:before {
-  border-left-color: map-get($map: $cases-colors, $key: color6);
-}
-
-.leaflet-tooltip-right.cases-6-tool-tips::before {
-  border-right-color: map-get($map: $cases-colors, $key: color6);
 }
 
 .cases-7-tool-tips {
   background: map-get($map: $cases-colors, $key: color7);
   color: white;
-  border: 1px solid map-get($map: $cases-colors, $key: color7);
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
-  opacity: 0.85;
 }
-
-.leaflet-tooltip-left.cases-7-tool-tips:before {
-  border-left-color: map-get($map: $cases-colors, $key: color7);
-}
-
-.leaflet-tooltip-right.cases-7-tool-tips::before {
-  border-right-color: map-get($map: $cases-colors, $key: color7);
-}
-
 .cases-8-tool-tips {
   background: map-get($map: $cases-colors, $key: color8);
   color: white;
-  border: 1px solid map-get($map: $cases-colors, $key: color8);
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
-  opacity: 0.85;
-}
-
-.leaflet-tooltip-left.cases-8-tool-tips:before {
-  border-left-color: map-get($map: $cases-colors, $key: color8);
-}
-
-.leaflet-tooltip-right.cases-8-tool-tips::before {
-  border-right-color: map-get($map: $cases-colors, $key: color8);
 }
 
 .cases-9-tool-tips {
   background: map-get($map: $cases-colors, $key: color9);
   color: white;
-  border: 1px solid map-get($map: $cases-colors, $key: color9);
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
-  opacity: 0.85;
 }
 
-.leaflet-tooltip-left.cases-9-tool-tips:before {
-  border-left-color: map-get($map: $cases-colors, $key: color9);
-}
 
-.leaflet-tooltip-right.cases-9-tool-tips::before {
-  border-right-color: map-get($map: $cases-colors, $key: color9);
-}
-
-.deaths-1-tool-tips {
-  background: map-get($map: $deaths-colors, $key: color1);
+.deaths-1-tool-tips,
+.deaths-2-tool-tips,
+.deaths-3-tool-tips,
+.deaths-4-tool-tips,
+.deaths-5-tool-tips,
+.deaths-6-tool-tips,
+.deaths-7-tool-tips,
+.deaths-8-tool-tips,
+.deaths-9-tool-tips {
   color: black;
   border: 1px solid map-get($map: $deaths-colors, $key: color1);
   font-family: "Open Sans", sans-serif;
@@ -1083,148 +935,71 @@ table-area {
   opacity: 0.85;
 }
 
-.leaflet-tooltip-left.deaths-1-tool-tips:before {
+.leaflet-tooltip-left.deaths-1-tool-tips:before,
+.leaflet-tooltip-left.deaths-2-tool-tips:before,
+.leaflet-tooltip-left.deaths-3-tool-tips:before,
+.leaflet-tooltip-left.deaths-4-tool-tips:before,
+.leaflet-tooltip-left.deaths-5-tool-tips:before,
+.leaflet-tooltip-left.deaths-6-tool-tips:before,
+.leaflet-tooltip-left.deaths-7-tool-tips:before,
+.leaflet-tooltip-left.deaths-8-tool-tips:before,
+.leaflet-tooltip-left.deaths-9-tool-tips:before {
   border-left-color: map-get($map: $deaths-colors, $key: color1);
 }
 
-.leaflet-tooltip-right.deaths-1-tool-tips::before {
+.leaflet-tooltip-right.deaths-1-tool-tips::before,
+.leaflet-tooltip-right.deaths-2-tool-tips:before,
+.leaflet-tooltip-right.deaths-3-tool-tips::before,
+.leaflet-tooltip-right.deaths-4-tool-tips:before,
+.leaflet-tooltip-right.deaths-5-tool-tips:before,
+.leaflet-tooltip-right.deaths-6-tool-tips::before,
+.leaflet-tooltip-right.deaths-7-tool-tips:before,
+.leaflet-tooltip-right.deaths-8-tool-tips::before,
+.leaflet-tooltip-right.deaths-9-tool-tips:before {
   border-right-color: map-get($map: $deaths-colors, $key: color1);
+}
+
+.deaths-1-tool-tips {
+  background: map-get($map: $deaths-colors, $key: color1);
 }
 
 .deaths-2-tool-tips {
   background: map-get($map: $deaths-colors, $key: color2);
-  color: black;
-  border: 1px solid map-get($map: $deaths-colors, $key: color2);
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
-  opacity: 0.85;
 }
 
-.leaflet-tooltip-left.deaths-2-tool-tips:before {
-  border-left-color: map-get($map: $deaths-colors, $key: color2);
-}
-
-.leaflet-tooltip-right.deaths-2-tool-tips::before {
-  border-right-color: map-get($map: $deaths-colors, $key: color2);
-}
 
 .deaths-3-tool-tips {
   background: map-get($map: $deaths-colors, $key: color3);
-  color: black;
-  border: 1px solid map-get($map: $deaths-colors, $key: color3);
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
-  opacity: 0.85;
-}
-
-.leaflet-tooltip-left.deaths-3-tool-tips:before {
-  border-left-color: map-get($map: $deaths-colors, $key: color3);
-}
-
-.leaflet-tooltip-right.deaths-3-tool-tips::before {
-  border-right-color: map-get($map: $deaths-colors, $key: color3);
 }
 
 .deaths-4-tool-tips {
   background: map-get($map: $deaths-colors, $key: color4);
-  color: black;
-  border: 1px solid map-get($map: $deaths-colors, $key: color4);
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
-  opacity: 0.85;
-}
 
-.leaflet-tooltip-left.deaths-4-tool-tips:before {
-  border-left-color: map-get($map: $deaths-colors, $key: color4);
-}
-
-.leaflet-tooltip-right.deaths-4-tool-tips::before {
-  border-right-color: map-get($map: $deaths-colors, $key: color4);
 }
 
 .deaths-5-tool-tips {
   background: map-get($map: $deaths-colors, $key: color5);
   color: white;
-  border: 1px solid map-get($map: $deaths-colors, $key: color5);
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
-  opacity: 0.85;
-}
-
-.leaflet-tooltip-left.deaths-5-tool-tips:before {
-  border-left-color: map-get($map: $deaths-colors, $key: color5);
-}
-
-.leaflet-tooltip-right.deaths-5-tool-tips::before {
-  border-right-color: map-get($map: $deaths-colors, $key: color5);
 }
 
 .deaths-6-tool-tips {
   background: map-get($map: $deaths-colors, $key: color6);
   color: white;
-  border: 1px solid map-get($map: $deaths-colors, $key: color6);
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
-  opacity: 0.85;
-}
-
-.leaflet-tooltip-left.deaths-6-tool-tips:before {
-  border-left-color: map-get($map: $deaths-colors, $key: color6);
-}
-
-.leaflet-tooltip-right.deaths-6-tool-tips::before {
-  border-right-color: map-get($map: $deaths-colors, $key: color6);
 }
 
 .deaths-7-tool-tips {
   background: map-get($map: $deaths-colors, $key: color7);
   color: white;
-  border: 1px solid map-get($map: $deaths-colors, $key: color7);
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
-  opacity: 0.85;
-}
-
-.leaflet-tooltip-left.deaths-7-tool-tips:before {
-  border-left-color: map-get($map: $deaths-colors, $key: color7);
-}
-
-.leaflet-tooltip-right.deaths-7-tool-tips::before {
-  border-right-color: map-get($map: $deaths-colors, $key: color7);
 }
 
 .deaths-8-tool-tips {
   background: map-get($map: $deaths-colors, $key: color8);
   color: white;
-  border: 1px solid map-get($map: $deaths-colors, $key: color8);
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
-  opacity: 0.85;
-}
-
-.leaflet-tooltip-left.deaths-8-tool-tips:before {
-  border-left-color: map-get($map: $deaths-colors, $key: color8);
-}
-
-.leaflet-tooltip-right.deaths-8-tool-tips::before {
-  border-right-color: map-get($map: $deaths-colors, $key: color8);
 }
 
 .deaths-9-tool-tips {
   background: map-get($map: $deaths-colors, $key: color9);
   color: white;
-  border: 1px solid map-get($map: $deaths-colors, $key: color9);
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
-  opacity: 0.85;
-}
-
-.leaflet-tooltip-left.deaths-9-tool-tips:before {
-  border-left-color: map-get($map: $deaths-colors, $key: color9);
-}
-
-.leaflet-tooltip-right.deaths-9-tool-tips::before {
-  border-right-color: map-get($map: $deaths-colors, $key: color9);
 }
 
 /* table formatting */
@@ -1292,11 +1067,6 @@ table-area {
 .apexcharts-canvas.apexcharts-zoomable .hovering-zoom {
   cursor: default !important;
 }
-
-// .apexcharts-toolbar {
-//   width: 30% !important;
-//   max-width: default !important;
-// }
 
 .apexcharts-zoom-icon,
 .apexcharts-zoomin-icon,
