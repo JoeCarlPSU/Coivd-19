@@ -1795,46 +1795,47 @@ document.addEventListener("DOMContentLoaded", function(event) {
             deathsColors[9];
     };
 
+
     let casesClass = (layer) => {
         let cases = layer.feature.properties.cases;
-        return cases > dailyCasesNumbers[9] ?
-            casesToolTips[9] :
-            cases > dailyCasesNumbers[8] ?
-            casesToolTips[8] :
-            cases > dailyCasesNumbers[7] ?
-            casesToolTips[7] :
-            cases > dailyCasesNumbers[6] ?
-            casesToolTips[6] :
-            cases > dailyCasesNumbers[5] ?
-            casesToolTips[5] :
-            cases > dailyCasesNumbers[4] ?
-            casesToolTips[4] :
-            cases > dailyCasesNumbers[3] ?
-            casesToolTips[3] :
-            cases >= dailyCasesNumbers[2] ?
-            casesToolTips[2] :
-            casesToolTips[1];
+        return cases < dailyCasesNumbers[1] ?
+        casesToolTips[1] :
+        cases <= dailyCasesNumbers[2] ?
+        casesToolTips[2] :
+        cases <= dailyCasesNumbers[3] ?
+        casesToolTips[3] :
+        cases <= dailyCasesNumbers[4] ?
+        casesToolTips[4] :
+        cases <= dailyCasesNumbers[5] ?
+        casesToolTips[5] :
+        cases <= dailyCasesNumbers[6] ?
+        casesToolTips[6] :
+        cases <= dailyCasesNumbers[7] ?
+        casesToolTips[7] :
+        cases <= dailyCasesNumbers[8] ?
+        casesToolTips[8] :
+        casesToolTips[9];
     };
 
     let deathsClass = (layer) => {
         let deaths = layer.feature.properties.deaths;
-        return deaths > dailyDeathsNumbers[9] ?
-            deathsToolTips[9] :
-            deaths > dailyDeathsNumbers[8] ?
-            deathsToolTips[8] :
-            deaths > dailyDeathsNumbers[7] ?
-            deathsToolTips[7] :
-            deaths > dailyDeathsNumbers[6] ?
-            deathsToolTips[6] :
-            deaths > dailyDeathsNumbers[5] ?
-            deathsToolTips[5] :
-            deaths > dailyDeathsNumbers[4] ?
-            deathsToolTips[4] :
-            deaths > dailyDeathsNumbers[3] ?
-            deathsToolTips[3] :
-            deaths >= dailyDeathsNumbers[2] ?
-            deathsToolTips[2] :
-            deathsToolTips[1];
+        return deaths <= dailyDeathsNumbers[1] ?
+        deathsToolTips[1] :
+        deaths <= dailyDeathsNumbers[2] ?
+        deathsToolTips[2] :
+        deaths <= dailyDeathsNumbers[3] ?
+        deathsToolTips[3] :
+        deaths <= dailyDeathsNumbers[4] ?
+        deathsToolTips[4] :
+        deaths <= dailyDeathsNumbers[5] ?
+        deathsToolTips[5] :
+        deaths <= dailyDeathsNumbers[6] ?
+        deathsToolTips[6] :
+        deaths <= dailyDeathsNumbers[7] ?
+        deathsToolTips[7] :
+        deaths <= dailyDeathsNumbers[8] ?
+        deathsToolTips[8] :
+        deathsToolTips[9];
     };
 
     let casesStyle = (feature) => {
