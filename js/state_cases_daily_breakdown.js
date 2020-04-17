@@ -33,4 +33,5 @@ let state_cases_daily_breakdown = [{"date":"3/11/2020","value":0},
 {"date":"4/12/2020","value":645},
 {"date":"4/13/2020","value":997},
 {"date":"4/14/2020","value":1366},
-{"date": "4/15/2020", "value": 1058}]
+{"date": "4/15/2020", "value": 1058},
+{"date": "4/16/2020", "value": 1204}]

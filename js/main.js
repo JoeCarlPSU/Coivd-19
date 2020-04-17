@@ -11,9 +11,9 @@ let deathsLineModalChart;
 let casesDeathsBarModalChart;
 let visualType = "Cases";
 let visualPieType = "Cases";
-let currentdate = "April 15, 2020";
-let casesMax = 7136;
-let deathsMax = 475;
+let currentdate = "April 16, 2020";
+let casesMax = 7383;
+let deathsMax = 546;
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
@@ -1191,7 +1191,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             data: [1, 9, 13, 16, 20, 18, 13, 10]
         }, {
             name: '% of Deaths',
-            data: [0, 1, 1, 5, 10, 18, 28, 37]
+            data: [0, 1, 1, 4, 10, 19, 27, 37]
         }],
 
         chart: {
@@ -1396,7 +1396,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             data: [1, 9, 13, 16, 20, 18, 13, 10]
         }, {
             name: '% of Deaths',
-            data: [0, 1, 1, 5, 10, 18, 28, 37]
+            data: [0, 1, 1, 4, 10, 19, 27, 37]
         }],
 
         chart: {
@@ -1738,7 +1738,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         6: 125,
         7: 354,
         8: 1084,
-        9: 7136,
+        9: 7383,
     };
 
 
@@ -1751,7 +1751,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         6: 25,
         7: 90,
         8: 410,
-        9: 475
+        9: 546
     }
 
     //Function for styline the geoJSON files
@@ -1957,12 +1957,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
     };
 
     //add the initial current data on map load
-    addToMap(aprilFifteen);
+    addToMap(aprilSixteen);
 
     let addGeoJSONLayer = (date) => {
         switch (date) {
+            case "4/16/2020":
+                addToMap(aprilSixteen);
+                break;
             case "4/15/2020":
-                addToMap(aprilFifteen)
+                addToMap(aprilFifteen);
                 break;
             case "4/14/2020":
                 addToMap(aprilFourteen);
