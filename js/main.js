@@ -1738,7 +1738,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         6: 227,
         7: 430,
         8: 1197,
-        9: 7414,
+        9: 7497,
     };
 
 
@@ -1751,7 +1751,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         6: 25,
         7: 106,
         8: 462,
-        9: 582
+        9: 589
     }
 
     //Function for styline the geoJSON files
