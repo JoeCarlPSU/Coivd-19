@@ -12,8 +12,8 @@ let casesDeathsBarModalChart;
 let visualType = "Cases";
 let visualPieType = "Cases";
 let currentdate = "April 17, 2020";
-let casesMax = 7383;
-let deathsMax = 546;
+let casesMax = 7414;
+let deathsMax = 582;
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
@@ -1732,26 +1732,26 @@ document.addEventListener("DOMContentLoaded", function(event) {
     let dailyCasesNumbers = {
         1: 1,
         2: 12,
-        3: 30,
-        4: 56,
-        5: 81,
-        6: 125,
-        7: 354,
-        8: 1084,
-        9: 7383,
+        3: 35,
+        4: 59,
+        5: 103,
+        6: 227,
+        7: 430,
+        8: 1197,
+        9: 7414,
     };
 
 
     let dailyDeathsNumbers = {
         1: 1,
-        2: 4,
+        2: 3,
         3: 6,
-        4: 9,
-        5: 11,
+        4: 10,
+        5: 13,
         6: 25,
-        7: 90,
-        8: 410,
-        9: 546
+        7: 106,
+        8: 462,
+        9: 582
     }
 
     //Function for styline the geoJSON files
