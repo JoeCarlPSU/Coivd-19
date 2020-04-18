@@ -11,9 +11,9 @@ let deathsLineModalChart;
 let casesDeathsBarModalChart;
 let visualType = "Cases";
 let visualPieType = "Cases";
-let currentdate = "April 17, 2020";
-let casesMax = 7414;
-let deathsMax = 582;
+let currentdate = "April 18, 2020";
+let casesMax = 7497;
+let deathsMax = 589;
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
@@ -1188,10 +1188,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     let stackedChartoptions = {
         series: [{
             name: '% of Cases',
-            data: [1, 9, 13, 16, 20, 18, 13, 10]
+            data: [1, 9, 13, 16, 19, 18, 13, 11]
         }, {
             name: '% of Deaths',
-            data: [0, 1, 1, 4, 10, 19, 27, 37]
+            data: [0, 1, 1, 4, 9, 19, 28, 38]
         }],
 
         chart: {
@@ -1393,10 +1393,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     let stackedModalChartOptions = {
         series: [{
             name: '% of Cases',
-            data: [1, 9, 13, 16, 20, 18, 13, 10]
+            data: [1, 9, 13, 16, 19, 18, 13, 11]
         }, {
             name: '% of Deaths',
-            data: [0, 1, 1, 4, 10, 19, 27, 37]
+            data: [0, 1, 1, 4, 9, 19, 28, 38]
         }],
 
         chart: {
@@ -1958,10 +1958,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     };
 
     //add the initial current data on map load
-    addToMap(aprilSeventeen);
+    addToMap(aprilEighteen);
 
     let addGeoJSONLayer = (date) => {
         switch (date) {
+            case "4/18/2020":
+                addToMap(aprilEighteen)
+                break;
             case "4/17/2020":
                 addToMap(aprilSeventeen)
                 break;

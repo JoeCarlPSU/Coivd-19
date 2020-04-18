@@ -35,4 +35,5 @@ let state_deaths_daily_breakdown = [{"date":"3/11/2020","value":0},
 {"date":"4/14/2020","value":166},
 {"date":"4/15/2020","value":153},
 {"date":"4/16/2020","value":172},
-{"date":"4/17/2020","value":134}]
+{"date":"4/17/2020","value":134},
+{"date":"4/18/2020","value":81}]
