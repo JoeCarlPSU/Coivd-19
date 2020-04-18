@@ -11,7 +11,7 @@ let deathsLineModalChart;
 let casesDeathsBarModalChart;
 let visualType = "Cases";
 let visualPieType = "Cases";
-let currentdate = "April 16, 2020";
+let currentdate = "April 17, 2020";
 let casesMax = 7383;
 let deathsMax = 546;
 
@@ -1175,7 +1175,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             function appendData() {
                 chartPie.w.globals.initialConfig.title.text = 'Deaths by Sex'
                 var arr = chartPie.w.globals.series.slice()
-                arr = [57, 43]
+                arr = [54, 44, 2]
                 return arr;
             }
 
@@ -1958,10 +1958,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     };
 
     //add the initial current data on map load
-    addToMap(aprilSixteen);
+    addToMap(aprilSeventeen);
 
     let addGeoJSONLayer = (date) => {
         switch (date) {
+            case "4/17/2020":
+                addToMap(aprilSeventeen)
+                break;
             case "4/16/2020":
                 addToMap(aprilSixteen);
                 break;
