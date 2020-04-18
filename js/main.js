@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 padding: {
                     top: 10,
                     right: 25,
-                    bottom: 10,
+                    bottom: 20,
                     left: 25,
                 },
             },
@@ -529,7 +529,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 padding: {
                     top: 10,
                     right: 25,
-                    bottom: 10,
+                    bottom: 0,
                     left: 25,
                 },
             },
