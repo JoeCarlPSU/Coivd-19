@@ -11,9 +11,9 @@ let deathsLineModalChart;
 let casesDeathsBarModalChart;
 let visualType = "Cases";
 let visualPieType = "Cases";
-let currentdate = "April 20, 2020";
-let casesMax = 7736;
-let deathsMax = 641;
+let currentdate = "April 21, 2020";
+let casesMax = 7904;
+let deathsMax = 728;
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
@@ -1738,7 +1738,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         6: 227,
         7: 430,
         8: 1197,
-        9: 7736,
+        9: 7904,
     };
 
 
@@ -1751,7 +1751,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         6: 25,
         7: 106,
         8: 462,
-        9: 641
+        9: 728
     }
 
     //Function for styline the geoJSON files
@@ -1958,10 +1958,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     };
 
     //add the initial current data on map load
-    addToMap(aprilTwenty);
+    addToMap(aprilTwentyOne);
 
     let addGeoJSONLayer = (date) => {
         switch (date) {
+            case "4/21/2020":
+                addToMap(aprilTwentyOne)
+                break;
             case "4/20/2020":
                 addToMap(aprilTwenty)
                 break;
