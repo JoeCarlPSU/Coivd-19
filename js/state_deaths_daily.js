@@ -41,4 +41,4 @@ let state_deaths_daily = [{"date":"3/11/2020","value":0},
 {"date": "4/20/2020", "value": 2468},
 {"date": "4/21/2020", "value": 2700},
 {"date": "4/22/2020", "value": 2813},
-{"date": "4/23/2020", "value": 2977}]
+{"date": "4/23/2020", "value": 2977},]
